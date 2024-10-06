@@ -1,0 +1,22 @@
+@import '../../index.scss';
+
+.footer {
+    display: flex;
+    height: 90px;
+    background-color: $secondary-color;
+    justify-content: center;
+    align-items: center;
+
+    &__copyright {
+        color: $cream-color;
+        font-size: 0.75rem;
+    }
+
+    @include _768 {
+        &__copyright {
+            font-size: 0.5rem;
+        }
+
+        height: 60px;
+    }
+}

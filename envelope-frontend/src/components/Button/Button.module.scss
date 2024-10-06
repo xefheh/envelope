@@ -1,0 +1,47 @@
+@import '../../index.scss';
+
+.btn {
+    width: 200px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    cursor: pointer;
+
+    border: solid 3px black;
+
+    background-color: white;
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    font-size: 1.2rem;
+
+    font-family: "Montserrat", sans-serif;
+
+    @include _768 {
+        width: 125px;
+        height: 25px;
+        font-size: 0.75rem;
+    }
+}
+
+.default {
+    background-color: $cream-color;
+    color: $secondary-color;
+    border-color: $secondary-color;
+    transition: linear 150ms;
+
+    &:hover {
+        background-color: $secondary-color;
+        color: $cream-color;
+        border-color: $cream-color;
+    }
+
+    &:active {
+        background-color: $primary-color-darker
+    }
+}
