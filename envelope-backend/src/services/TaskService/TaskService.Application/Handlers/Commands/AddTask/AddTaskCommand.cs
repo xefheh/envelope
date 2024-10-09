@@ -1,17 +1,11 @@
-﻿using TaskService.Domain.Enums;
+﻿using MediatR;
+using TaskService.Application.Common;
+using TaskService.Domain.Enums;
 
-namespace TaskService.Domain.Entities;
+namespace TaskService.Application.Handlers.Commands.AddTask;
 
-/// <summary>
-/// Задача
-/// </summary>
-public class Task
+public class AddTaskCommand : IRequest<Result<Guid>>
 {
-    /// <summary>
-    /// Суррогатный ключ
-    /// </summary>
-    public Guid Id { get; set; }
-
     /// <summary>
     /// Название
     /// </summary>

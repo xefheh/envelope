@@ -1,14 +1,14 @@
-﻿using MediatR;
-using TaskService.Domain.Enums;
-using TaskService.Domain.Interfaces;
+﻿using TaskService.Domain.Enums;
 
-namespace TaskService.Domain.Events;
+namespace TaskService.Domain.Projections;
 
-/// <summary>
-/// Событие: задача создана
-/// </summary>
-public class TaskCreated : ITaskEvent, INotification
+public class GlobalTaskProjection
 {
+    /// <summary>
+    /// Суррогатный ключ
+    /// </summary>
+    public Guid Id { get; set; }
+
     /// <summary>
     /// Название
     /// </summary>
@@ -38,9 +38,19 @@ public class TaskCreated : ITaskEvent, INotification
     /// Id автора задачи
     /// </summary>
     public Guid Author { get; set; }
-
-    public Guid Id { get; set; }
     
-    public int VersionId { get; set; }
-    public DateTime EventDate { get; set; }
+    /// <summary>
+    /// Дата создания задачи
+    /// </summary>
+    public DateTime CreationDate { get; set; }
+    
+    /// <summary>
+    /// Дата обновления задачи
+    /// </summary>
+    public DateTime UpdateDate { get; set; }
+    
+    /// <summary>
+    /// Состояние задачи
+    /// </summary>
+    public TaskGlobalState State { get; set; }
 }

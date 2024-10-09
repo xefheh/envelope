@@ -1,22 +1,16 @@
-﻿namespace TaskService.Domain.Events;
+﻿using MediatR;
+using TaskService.Domain.Interfaces;
+
+namespace TaskService.Domain.Events;
 
 /// <summary>
 /// Событие: Задача отправлена на проверку
 /// </summary>
-public class TaskSentToGlobal
+public class TaskSentToGlobal : ITaskEvent, INotification
 {
-    /// <summary>
-    /// Id
-    /// </summary>
     public Guid Id { get; set; }
     
-    /// <summary>
-    /// Id модератор
-    /// </summary>
-    public Guid Moderator { get; set; }
+    public int VersionId { get; set; }
     
-    /// <summary>
-    /// Дата отправления на проверку
-    /// </summary>
-    public DateTime SentToGlobalDate { get; set; }
+    public DateTime EventDate { get; set; }
 }
