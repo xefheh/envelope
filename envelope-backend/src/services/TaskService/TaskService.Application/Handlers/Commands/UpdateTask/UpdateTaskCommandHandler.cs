@@ -20,7 +20,7 @@ public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, Resul
     
     public async Task<Result<Unit>> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
     {
-        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id);
+        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id, cancellationToken);
         
         if (lastEvent is null or TaskRemoved)
         {
@@ -39,9 +39,9 @@ public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, Resul
             Name = request.Name,
         };
         
-        await _eventStore.AddEventAsync(updateEvent);
+        await _eventStore.AddEventAsync(updateEvent, cancellationToken);
         
-        await _eventBus.Publish(updateEvent);
+        await _eventBus.Publish(updateEvent, cancellationToken);
         
         return Result<Unit>.OnSuccess(Unit.Value);
     }

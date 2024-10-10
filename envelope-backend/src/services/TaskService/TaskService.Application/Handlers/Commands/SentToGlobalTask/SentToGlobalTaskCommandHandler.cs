@@ -20,7 +20,7 @@ public class SentToGlobalTaskCommandHandler : IRequestHandler<SentToGlobalTaskCo
     
     public async Task<Result<Unit>> Handle(SentToGlobalTaskCommand request, CancellationToken cancellationToken)
     {
-        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id);
+        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id, cancellationToken);
         
         switch (lastEvent)
         {
@@ -30,16 +30,16 @@ public class SentToGlobalTaskCommandHandler : IRequestHandler<SentToGlobalTaskCo
                 return Result<Unit>.OnFailure(new InvalidStateException(request.GetType()));
         }
 
-        var refusedEvent = new TaskSentToGlobal
+        var sentToGlobalEvent = new TaskSentToGlobal
         {
             Id = lastEvent.Id,
             VersionId = lastEvent.VersionId + 1,
             EventDate = DateTime.UtcNow
         };
         
-        await _eventStore.AddEventAsync(refusedEvent);
+        await _eventStore.AddEventAsync(sentToGlobalEvent, cancellationToken);
         
-        await _eventBus.Publish(refusedEvent);
+        await _eventBus.Publish(sentToGlobalEvent, cancellationToken);
         
         return Result<Unit>.OnSuccess(Unit.Value);
     }

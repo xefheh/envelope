@@ -20,7 +20,7 @@ public class RemoveTaskCommandHandler : IRequestHandler<RemoveTaskCommand, Resul
     
     public async Task<Result<Unit>> Handle(RemoveTaskCommand request, CancellationToken cancellationToken)
     {
-        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id);
+        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id, cancellationToken);
         
         if (lastEvent is null or TaskRemoved)
         {
@@ -34,9 +34,9 @@ public class RemoveTaskCommandHandler : IRequestHandler<RemoveTaskCommand, Resul
             VersionId = lastEvent.VersionId + 1
         };
         
-        await _eventStore.AddEventAsync(removeEvent);
+        await _eventStore.AddEventAsync(removeEvent, cancellationToken);
         
-        await _eventBus.Publish(removeEvent);
+        await _eventBus.Publish(removeEvent, cancellationToken);
         
         return Result<Unit>.OnSuccess(Unit.Value);
     }

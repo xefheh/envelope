@@ -48,9 +48,4 @@ public class GlobalTaskProjection
     /// Дата обновления задачи
     /// </summary>
     public DateTime UpdateDate { get; set; }
-    
-    /// <summary>
-    /// Состояние задачи
-    /// </summary>
-    public TaskGlobalState State { get; set; }
 }

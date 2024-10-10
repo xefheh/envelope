@@ -17,7 +17,7 @@ public class RefuseTaskCommandHandler : IRequestHandler<RefuseTaskCommand, Resul
     
     public async Task<Result<Unit>> Handle(RefuseTaskCommand request, CancellationToken cancellationToken)
     {
-        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id);
+        var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id, cancellationToken);
         
         if (lastEvent is null or TaskRemoved)
         {
@@ -36,7 +36,7 @@ public class RefuseTaskCommandHandler : IRequestHandler<RefuseTaskCommand, Resul
             EventDate = DateTime.UtcNow
         };
         
-        await _eventStore.AddEventAsync(refusedEvent);
+        await _eventStore.AddEventAsync(refusedEvent, cancellationToken);
         
         return Result<Unit>.OnSuccess(Unit.Value);
     }

@@ -9,9 +9,12 @@ namespace TaskService.Application.Handlers.Commands.AddTask;
 public class AddTaskCommandHandler : IRequestHandler<AddTaskCommand, Result<Guid>>
 {
     private readonly ITaskEventStore _eventStore;
+    private readonly IEventBus _eventBus;
 
-    public AddTaskCommandHandler(ITaskEventStore eventStore) =>
-        _eventStore = eventStore;
+    public AddTaskCommandHandler(
+        ITaskEventStore eventStore,
+        IEventBus eventBus) =>
+        (_eventStore, _eventBus) = (eventStore, eventBus);
     
     public async Task<Result<Guid>> Handle(AddTaskCommand request, CancellationToken cancellationToken)
     {
@@ -30,7 +33,9 @@ public class AddTaskCommandHandler : IRequestHandler<AddTaskCommand, Result<Guid
             VersionId = 1
         };
         
-        await _eventStore.AddEventAsync(addEvent);
+        await _eventStore.AddEventAsync(addEvent, cancellationToken);
+        
+        await _eventBus.Publish(addEvent, cancellationToken);
         
         return Result<Guid>.OnSuccess(id);
     }

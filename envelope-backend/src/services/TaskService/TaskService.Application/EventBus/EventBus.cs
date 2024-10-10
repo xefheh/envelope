@@ -10,6 +10,6 @@ public class EventBus : IEventBus
     public EventBus(IMediator mediator) =>
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     
-    public async Task Publish(INotification @event) =>
-        await _mediator.Publish(@event);
+    public async Task Publish(INotification @event, CancellationToken cancellationToken) =>
+        await _mediator.Publish(@event, cancellationToken);
 }

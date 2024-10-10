@@ -51,6 +51,16 @@ public class Task : IAggregate<ITaskEvent>
     public TaskGlobalState State { get; set; }
     
     /// <summary>
+    /// Дата создание задачи
+    /// </summary>
+    public DateTime CreationDate { get; set; }
+    
+    /// <summary>
+    /// Дата последнего обновления задачи
+    /// </summary>
+    public DateTime UpdateDate { get; set; }
+    
+    /// <summary>
     /// Восстановавление агрегата 
     /// </summary>
     /// <param name="event">Событие</param>
@@ -91,6 +101,7 @@ public class Task : IAggregate<ITaskEvent>
         Author = @event.Author;
         Difficult = @event.Difficult;
         ExecutionTime = @event.ExecutionTime;
+        CreationDate = @event.EventDate;
     }
 
     private void Apply(TaskRemoved _)
@@ -115,6 +126,7 @@ public class Task : IAggregate<ITaskEvent>
         Answer = @event.Answer;
         Difficult = @event.Difficult;
         ExecutionTime = @event.ExecutionTime;
+        UpdateDate = @event.EventDate;
     }
 
     private void Apply(TaskRefused _)

@@ -11,20 +11,23 @@ public interface ITaskEventStore
     /// Добавить событие
     /// </summary>
     /// <param name="taskEvent">Событие задачи</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Пустой Task</returns>
-    public Task AddEventAsync(ITaskEvent taskEvent);
-    
+    public Task AddEventAsync(ITaskEvent taskEvent, CancellationToken cancellationToken);
+
     /// <summary>
     /// Получить события для агрегата
     /// </summary>
     /// <param name="aggregateId">Id агрегата</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Коллекция событий</returns>
-    public Task<ICollection<ITaskEvent>> GetEventsAsync(Guid aggregateId);
-    
+    public Task<ICollection<ITaskEvent>> GetEventsAsync(Guid aggregateId, CancellationToken cancellationToken);
+
     /// <summary>
     /// Получить последнее события для агрегата
     /// </summary>
     /// <param name="aggregateId">Id агрегата</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Коллекция событий</returns>
-    public Task<ITaskEvent?> GetLastOrDefaultEventAsync(Guid aggregateId);
+    public Task<ITaskEvent?> GetLastOrDefaultEventAsync(Guid aggregateId, CancellationToken cancellationToken);
 }
