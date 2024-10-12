@@ -5,9 +5,11 @@ namespace AuthService.Application.Config;
 
 public class AuthOptions
 {
-    public const string ISSUER = "EnvelopeBack";
-    public const string AUDIENCE = "EnvelopeClient";
-    const string KEY = "prostokeyfor1234231dsfsdq3shiphrovki014345";
-    public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
-        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
+    public const string Issuer = "EnvelopeBack";
+    public const string Audience = "EnvelopeClient";
+    private const string Key = "prostokeyfor1234231dsfsdq3shiphrovki014345";
+
+    public static SymmetricSecurityKey GetSymmetricSecurityKey() {
+        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key));
+    }
 }

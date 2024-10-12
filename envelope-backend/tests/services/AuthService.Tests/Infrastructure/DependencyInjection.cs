@@ -13,7 +13,6 @@ public class DependencyInjection
 
         serviceCollection.AddSingleton<CommonStorage>();
         serviceCollection.AddSingleton<IUserRepository, MockCommonAuthRepository>();
-        serviceCollection.AddSingleton<IRoleRepository, MockCommonAuthRepository>();
         serviceCollection.AddSingleton<UserService>();
 
         var serviceProvider = serviceCollection.BuildServiceProvider();

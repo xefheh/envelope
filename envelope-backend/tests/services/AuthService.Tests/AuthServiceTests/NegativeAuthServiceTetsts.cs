@@ -2,6 +2,7 @@
 using AuthService.Application.Requests;
 using AuthService.Application.Utilities;
 using AuthService.Domain.Entities;
+using AuthService.Domain.Enums;
 using AuthService.Tests.Infrastructure;
 using AuthService.Tests.Infrastructure.Repositories;
 
@@ -11,20 +12,13 @@ public class NegativeAuthServiceTetsts
 {
     private static void CreateDefualtRoleAndUser(CommonStorage commonStorage)
     {
-        var defaultRole = new Role()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Student"
-        };
-        commonStorage.Roles.Add(defaultRole);
-
         var user = new User()
         {
             Id = Guid.NewGuid(),
             Nickname = "Oleg",
             Email = "horosrab@mail.ru",
             Password = HashHelper.CalculateMD5HashForString("password"),
-            Role = defaultRole.Id
+            Role = Role.Student
         };
         commonStorage.Users.Add(user);
     }

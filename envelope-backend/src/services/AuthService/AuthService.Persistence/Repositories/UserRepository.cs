@@ -5,9 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuthService.Persistance.Repositories;
 
-public class UserRepository(AuthContext context) : IUserRepository 
+public class UserRepository : IUserRepository 
 {
-    private readonly AuthContext _context = context;
+    private readonly AuthContext _context;
+
+    public UserRepository(AuthContext context)
+    {
+        _context = context;
+    }
 
     public async Task Create(User user)
     {

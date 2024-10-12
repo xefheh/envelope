@@ -3,9 +3,14 @@ using AuthService.Domain.Entities;
 
 namespace AuthService.Tests.Infrastructure.Repositories;
 
-public class MockCommonAuthRepository (CommonStorage commonStorage) : IUserRepository, IRoleRepository
+public class MockCommonAuthRepository : IUserRepository
 {
-    private readonly CommonStorage _commonStorage = commonStorage;
+    private readonly CommonStorage _commonStorage;
+
+    public MockCommonAuthRepository(CommonStorage commonStorage)
+    {
+        _commonStorage = commonStorage;
+    }
 
     public async Task Create(User user)
     {
@@ -20,10 +25,5 @@ public class MockCommonAuthRepository (CommonStorage commonStorage) : IUserRepos
     public async Task<User?> GetUserByNickname(string nickname)
     {
         return await Task.Run(() => _commonStorage.Users.FirstOrDefault(user => user.Nickname == nickname));
-    }
-
-    public async Task<Role> GetDefaultRole()
-    {
-        return await Task.Run(() => _commonStorage.Roles.First(role => role.Name == "Student"));
     }
 }

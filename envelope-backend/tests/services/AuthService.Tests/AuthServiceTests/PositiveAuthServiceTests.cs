@@ -2,6 +2,7 @@
 using AuthService.Application.Utilities;
 using AuthService.Domain.Entities;
 using AuthService.Application.Requests;
+using AuthService.Domain.Enums;
 
 namespace AuthService.Tests.AuthServiceTests;
 
@@ -12,13 +13,6 @@ public class PositiveAuthServiceTests
     {
         var (authService, commonStorage) = DependencyInjection.CreateUserServiceAndRepository();
 
-        var defaultRole = new Role()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Student"
-        };
-        commonStorage.Roles.Add(defaultRole);
-
         var request = new RegisterRequest() {
             Nickname = "Oleg",
             Email = "horosrab@mail.ru",
@@ -28,7 +22,9 @@ public class PositiveAuthServiceTests
         var userDTO = await authService.Register(request);
 
         Assert.NotNull(userDTO);
+        Assert.NotEmpty(userDTO.Token);
         Assert.Equal(request.Nickname, userDTO.Nickname);
+        Assert.Equal(Role.Student.ToString(), userDTO.Role);
     }
 
     [Fact]
@@ -36,18 +32,12 @@ public class PositiveAuthServiceTests
     {
         var (authService, commonStorage) = DependencyInjection.CreateUserServiceAndRepository();
 
-        var defaultRole = new Role() { 
-            Id = Guid.NewGuid(), 
-            Name = "Student" 
-        };
-        commonStorage.Roles.Add(defaultRole);
-
         var user = new User() {
             Id = Guid.NewGuid(),
             Nickname = "Oleg",
             Email = "horosrab@mail.ru",
             Password = HashHelper.CalculateMD5HashForString("password"),
-            Role = defaultRole.Id
+            Role = Role.Teacher
         };
         commonStorage.Users.Add(user);
 
@@ -60,6 +50,8 @@ public class PositiveAuthServiceTests
         var userDTO = await authService.Login(request);
 
         Assert.NotNull(userDTO);
+        Assert.NotEmpty(userDTO.Token);
         Assert.Equal(user.Nickname, userDTO.Nickname);
+        Assert.Equal(Role.Teacher.ToString(), userDTO.Role);
     }
 }

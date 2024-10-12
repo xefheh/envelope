@@ -1,24 +1,16 @@
 ﻿using AuthService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 namespace AuthService.Persistance.Data;
 
-public class AuthContext(DbContextOptions<AuthContext> options) : DbContext(options)
+public class AuthContext : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-    }
+    public AuthContext(DbContextOptions<AuthContext> options) : base(options)  { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<Role>().HasData(
-            new Role() { Name = "Student" },
-            new Role() { Name = "Teacher" },
-            new Role() { Name = "Moderator" });
     }
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Role> Roles { get; set; }
 }
