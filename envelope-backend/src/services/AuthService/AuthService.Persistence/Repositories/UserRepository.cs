@@ -19,4 +19,9 @@ public class UserRepository(AuthContext context) : IUserRepository
     {
         return await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
     }
+
+    public async Task<User?> GetUserByNickname(string nickname)
+    {
+        return await _context.Users.FirstOrDefaultAsync(user => user.Nickname == nickname);
+    }
 }
