@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthService.Tests.Infrastructure;
 
+/// <summary>
+/// Класс для внедрения зависимостей для тестов
+/// </summary>
 public class DependencyInjection
 {
     public static (UserService userService, CommonStorage repository) CreateUserServiceAndRepository()

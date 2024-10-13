@@ -3,6 +3,9 @@ using AuthService.Domain.Entities;
 
 namespace AuthService.Tests.Infrastructure.Repositories;
 
+/// <summary>
+/// Класс для имитации репозиториев для тестов
+/// </summary>
 public class MockCommonAuthRepository : IUserRepository
 {
     private readonly CommonStorage _commonStorage;
