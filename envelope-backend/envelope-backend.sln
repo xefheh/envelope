@@ -9,45 +9,42 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{86
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskService", "TaskService", "{610BCBD5-A228-4A63-95C0-F1F31B94B6A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService.Domain", "src\services\TaskService\TaskService.Domain\TaskService.Domain.csproj", "{3DE6F7D0-8580-409C-B88E-400A484114DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskService.Domain", "src\services\TaskService\TaskService.Domain\TaskService.Domain.csproj", "{3DE6F7D0-8580-409C-B88E-400A484114DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService.Application", "src\services\TaskService\TaskService.Application\TaskService.Application.csproj", "{71C2C0AF-AD80-4F9C-BB7A-1F96DF44C636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskService.Application", "src\services\TaskService\TaskService.Application\TaskService.Application.csproj", "{71C2C0AF-AD80-4F9C-BB7A-1F96DF44C636}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService.Persistence", "src\services\TaskService\TaskService.Persistence\TaskService.Persistence.csproj", "{D4C9B166-D5E2-44C0-9B49-8AAE70347227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskService.Persistence", "src\services\TaskService\TaskService.Persistence\TaskService.Persistence.csproj", "{D4C9B166-D5E2-44C0-9B49-8AAE70347227}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5C852739-76E2-431E-87CA-40BA08909EB7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{29066DA3-DFB7-4F26-AFC1-A99934C1D0EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService.Tests", "tests\services\TaskService.Tests\TaskService.Tests.csproj", "{0AC53A73-AE1E-4347-A038-A7F34874E8C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskService.Tests", "tests\services\TaskService.Tests\TaskService.Tests.csproj", "{0AC53A73-AE1E-4347-A038-A7F34874E8C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CourseService", "CourseService", "{19BB6100-CADA-43FF-83D8-24D33E52EE3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService", "{09618C5C-C6FF-466B-9B3C-F64C4E61ADCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Application", "src\services\CourseService\CourseService.Application\CourseService.Application.csproj", "{DEDCAFCD-B042-4A61-B02A-279E7E538C79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseService.Application", "src\services\CourseService\CourseService.Application\CourseService.Application.csproj", "{DEDCAFCD-B042-4A61-B02A-279E7E538C79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Domain", "src\services\CourseService\CourseService.Domain\CourseService.Domain.csproj", "{FE270D18-46BD-4990-94EE-7736965F47D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseService.Domain", "src\services\CourseService\CourseService.Domain\CourseService.Domain.csproj", "{FE270D18-46BD-4990-94EE-7736965F47D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Persistence", "src\services\CourseService\CourseService.Persistence\CourseService.Persistence.csproj", "{6FC918BA-A841-4D6B-9864-E535861606DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseService.Persistence", "src\services\CourseService\CourseService.Persistence\CourseService.Persistence.csproj", "{6FC918BA-A841-4D6B-9864-E535861606DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Application", "src\services\AuthService\AuthService.Application\AuthService.Application.csproj", "{8ADFEAE6-1CE4-436F-A1F5-6347D450600C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Application", "src\services\AuthService\AuthService.Application\AuthService.Application.csproj", "{8ADFEAE6-1CE4-436F-A1F5-6347D450600C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Domain", "src\services\AuthService\AuthService.Domain\AuthService.Domain.csproj", "{734497C8-7988-4634-981D-DB431F58059A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Domain", "src\services\AuthService\AuthService.Domain\AuthService.Domain.csproj", "{734497C8-7988-4634-981D-DB431F58059A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Persistence", "src\services\AuthService\AuthService.Persistence\AuthService.Persistence.csproj", "{628B6742-D97F-4BDD-95DB-D370069CB214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Persistence", "src\services\AuthService\AuthService.Persistence\AuthService.Persistence.csproj", "{628B6742-D97F-4BDD-95DB-D370069CB214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Tests", "tests\services\AuthService.Tests\AuthService.Tests.csproj", "{C9CF4A37-2031-4695-BB54-DC5F95F622F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Tests", "tests\services\AuthService.Tests\AuthService.Tests.csproj", "{C9CF4A37-2031-4695-BB54-DC5F95F622F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Tests", "tests\services\CourseService.Tests\CourseService.Tests.csproj", "{D7231883-C8F3-42E6-B38B-756157F94161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseService.Tests", "tests\services\CourseService.Tests\CourseService.Tests.csproj", "{D7231883-C8F3-42E6-B38B-756157F94161}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3DE6F7D0-8580-409C-B88E-400A484114DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -99,6 +96,9 @@ Global
 		{D7231883-C8F3-42E6-B38B-756157F94161}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7231883-C8F3-42E6-B38B-756157F94161}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{869569E4-DF69-4ED3-B312-D67FF2BF458B} = {40687E8F-63BB-4EC6-8EFA-120321334217}
 		{610BCBD5-A228-4A63-95C0-F1F31B94B6A2} = {869569E4-DF69-4ED3-B312-D67FF2BF458B}
@@ -117,5 +117,8 @@ Global
 		{628B6742-D97F-4BDD-95DB-D370069CB214} = {09618C5C-C6FF-466B-9B3C-F64C4E61ADCA}
 		{C9CF4A37-2031-4695-BB54-DC5F95F622F3} = {29066DA3-DFB7-4F26-AFC1-A99934C1D0EB}
 		{D7231883-C8F3-42E6-B38B-756157F94161} = {29066DA3-DFB7-4F26-AFC1-A99934C1D0EB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DF78641-8E68-4B66-AD8A-26DD6D99A988}
 	EndGlobalSection
 EndGlobal
