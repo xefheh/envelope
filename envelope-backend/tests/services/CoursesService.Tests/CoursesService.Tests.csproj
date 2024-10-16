@@ -7,6 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <RootNamespace>CoursesService.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,6 +19,11 @@
 
     <ItemGroup>
         <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\src\services\CourseService\CoursesService.Application\CoursesService.Application.csproj" />
+      <ProjectReference Include="..\..\..\src\services\CourseService\CoursesService.Domain\CoursesService.Domain.csproj" />
     </ItemGroup>
 
 </Project>
