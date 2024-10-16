@@ -21,15 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{29
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService.Tests", "tests\services\TaskService.Tests\TaskService.Tests.csproj", "{0AC53A73-AE1E-4347-A038-A7F34874E8C3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CourseService", "CourseService", "{19BB6100-CADA-43FF-83D8-24D33E52EE3B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoursesService", "CoursesService", "{19BB6100-CADA-43FF-83D8-24D33E52EE3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService", "{09618C5C-C6FF-466B-9B3C-F64C4E61ADCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Application", "src\services\CourseService\CourseService.Application\CourseService.Application.csproj", "{DEDCAFCD-B042-4A61-B02A-279E7E538C79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursesService.Application", "src\services\CourseService\CoursesService.Application\CoursesService.Application.csproj", "{DEDCAFCD-B042-4A61-B02A-279E7E538C79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Domain", "src\services\CourseService\CourseService.Domain\CourseService.Domain.csproj", "{FE270D18-46BD-4990-94EE-7736965F47D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursesService.Domain", "src\services\CourseService\CoursesService.Domain\CoursesService.Domain.csproj", "{FE270D18-46BD-4990-94EE-7736965F47D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Persistence", "src\services\CourseService\CourseService.Persistence\CourseService.Persistence.csproj", "{6FC918BA-A841-4D6B-9864-E535861606DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursesService.Persistence", "src\services\CourseService\CoursesService.Persistence\CoursesService.Persistence.csproj", "{6FC918BA-A841-4D6B-9864-E535861606DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Application", "src\services\AuthService\AuthService.Application\AuthService.Application.csproj", "{8ADFEAE6-1CE4-436F-A1F5-6347D450600C}"
 EndProject
@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Persistence", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Tests", "tests\services\AuthService.Tests\AuthService.Tests.csproj", "{C9CF4A37-2031-4695-BB54-DC5F95F622F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseService.Tests", "tests\services\CourseService.Tests\CourseService.Tests.csproj", "{D7231883-C8F3-42E6-B38B-756157F94161}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursesService.Tests", "tests\services\CoursesService.Tests\CoursesService.Tests.csproj", "{D7231883-C8F3-42E6-B38B-756157F94161}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
