@@ -5,7 +5,7 @@ using TaskService.Domain.Events;
 
 namespace TaskService.Application.Handlers.Notifications.GlobalProjectionNotificationsHandler;
 
-public class GlobalProjectionRemoveNotificationHandler : INotificationHandler<TaskRemoved>
+public class GlobalProjectionRemoveNotificationHandler : INotificationHandler<BaseTaskRemoved>
 {
     private readonly IGlobalProjectionWriteOnlyRepository _repository;
 
@@ -15,7 +15,7 @@ public class GlobalProjectionRemoveNotificationHandler : INotificationHandler<Ta
         _repository = globalProjectionWriteOnlyRepository;
     }
      
-    public async Task Handle(TaskRemoved notification, CancellationToken cancellationToken)
+    public async Task Handle(BaseTaskRemoved notification, CancellationToken cancellationToken)
     {
         await _repository.RemoveAsync(notification.Id, cancellationToken);
     }

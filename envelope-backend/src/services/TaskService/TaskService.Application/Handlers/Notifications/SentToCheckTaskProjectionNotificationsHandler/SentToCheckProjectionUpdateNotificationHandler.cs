@@ -7,7 +7,7 @@ using TaskService.Domain.Events;
 
 namespace TaskService.Application.Handlers.Notifications.SentToCheckTaskProjectionNotificationsHandler;
 
-public class SentToCheckProjectionUpdateNotificationHandler : INotificationHandler<TaskUpdated>
+public class SentToCheckProjectionUpdateNotificationHandler : INotificationHandler<BaseTaskUpdated>
 {
     private readonly ISentToCheckProjectionWriteOnlyRepository _repository;
     private readonly ITaskEventStore _eventStore;
@@ -20,7 +20,7 @@ public class SentToCheckProjectionUpdateNotificationHandler : INotificationHandl
         _eventStore = eventStore;
     }
     
-    public async Task Handle(TaskUpdated notification, CancellationToken cancellationToken)
+    public async Task Handle(BaseTaskUpdated notification, CancellationToken cancellationToken)
     {
         var events = await _eventStore.GetEventsAsync(notification.Id, cancellationToken);
         

@@ -19,17 +19,17 @@ public class RefuseTaskCommandHandler : IRequestHandler<RefuseTaskCommand, Resul
     {
         var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id, cancellationToken);
         
-        if (lastEvent is null or TaskRemoved)
+        if (lastEvent is null or BaseTaskRemoved)
         {
             return Result<Unit>.OnFailure(new NotFoundException(typeof(Task), request.Id));
         }
 
-        if (lastEvent is not TaskSentToCheck)
+        if (lastEvent is not BaseTaskSentToCheck)
         {
             return Result<Unit>.OnFailure(new InvalidStateException(request.GetType()));
         }
 
-        var refusedEvent = new TaskRefused
+        var refusedEvent = new BaseTaskRefused
         {
             Id = lastEvent.Id,
             VersionId = lastEvent.VersionId + 1,

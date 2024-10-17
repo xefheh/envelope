@@ -1,9 +1,11 @@
-﻿namespace TaskService.Domain.Interfaces;
+﻿using TaskService.Domain.Events.Base;
+
+namespace TaskService.Domain.Interfaces;
 
 /// <summary>
 /// Интерфейс агрегата
 /// </summary>
-public interface IAggregate<in T> where T : class, ITaskEvent
+public interface IAggregate<in T> where T : BaseTaskEvent
 {
     /// <summary>
     /// Id агрегата
