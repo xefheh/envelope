@@ -20,7 +20,7 @@ public class AddTaskCommandHandler : IRequestHandler<AddTaskCommand, Result<Guid
     {
         var id = Guid.NewGuid();
 
-        var addEvent = new TaskCreated
+        var addEvent = new BaseTaskCreated
         {
             Id = id,
             Author = request.Author,

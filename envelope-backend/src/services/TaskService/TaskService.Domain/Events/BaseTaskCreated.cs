@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using TaskService.Domain.Enums;
+using TaskService.Domain.Events.Base;
 using TaskService.Domain.Interfaces;
 
 namespace TaskService.Domain.Events;
@@ -7,7 +8,7 @@ namespace TaskService.Domain.Events;
 /// <summary>
 /// Событие: задача создана
 /// </summary>
-public class TaskCreated : ITaskEvent, INotification
+public class BaseTaskCreated : BaseTaskEvent, INotification
 {
     /// <summary>
     /// Название
@@ -38,9 +39,4 @@ public class TaskCreated : ITaskEvent, INotification
     /// Id автора задачи
     /// </summary>
     public Guid Author { get; set; }
-
-    public Guid Id { get; set; }
-    
-    public int VersionId { get; set; }
-    public DateTime EventDate { get; set; }
 }

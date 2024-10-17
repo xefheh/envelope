@@ -112,11 +112,11 @@ public class PositiveDefaultCommandHandlersTests
         
         var events = await eventStore.GetEventsAsync(id, CancellationToken.None);
 
-        var createdEvent = events.OfType<TaskCreated>().Last();
+        var createdEvent = events.OfType<BaseTaskCreated>().Last();
 
         expectedTask.CreationDate = createdEvent.EventDate;
         
-        var lastUpdatedEvent = events.OfType<TaskUpdated>().Last();
+        var lastUpdatedEvent = events.OfType<BaseTaskUpdated>().Last();
         
         expectedTask.UpdateDate = lastUpdatedEvent.EventDate;
 

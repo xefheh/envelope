@@ -6,7 +6,7 @@ using TaskService.Domain.Events;
 
 namespace TaskService.Application.Handlers.Notifications.TaskProjectionNotificationsHandler;
 
-public class TaskProjectionAddNotificationHandler : INotificationHandler<TaskCreated>
+public class TaskProjectionAddNotificationHandler : INotificationHandler<BaseTaskCreated>
 {
     private readonly ITaskProjectionWriteOnlyRepository _repository;
 
@@ -15,7 +15,7 @@ public class TaskProjectionAddNotificationHandler : INotificationHandler<TaskCre
         _repository = repository;
     }
     
-    public async Task Handle(TaskCreated notification, CancellationToken cancellationToken)
+    public async Task Handle(BaseTaskCreated notification, CancellationToken cancellationToken)
     {
         var taskAggregate = new Domain.Aggregates.Task();
         

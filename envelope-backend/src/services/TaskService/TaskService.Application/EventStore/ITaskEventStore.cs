@@ -1,4 +1,5 @@
-﻿using TaskService.Domain.Interfaces;
+﻿using TaskService.Domain.Events.Base;
+using TaskService.Domain.Interfaces;
 
 namespace TaskService.Application.EventStore;
 
@@ -10,10 +11,10 @@ public interface ITaskEventStore
     /// <summary>
     /// Добавить событие
     /// </summary>
-    /// <param name="taskEvent">Событие задачи</param>
+    /// <param name="baseTaskEvent">Событие задачи</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Пустой Task</returns>
-    public Task AddEventAsync(ITaskEvent taskEvent, CancellationToken cancellationToken);
+    public Task AddEventAsync(BaseTaskEvent baseTaskEvent, CancellationToken cancellationToken);
 
     /// <summary>
     /// Получить события для агрегата
@@ -21,7 +22,7 @@ public interface ITaskEventStore
     /// <param name="aggregateId">Id агрегата</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Коллекция событий</returns>
-    public Task<ICollection<ITaskEvent>> GetEventsAsync(Guid aggregateId, CancellationToken cancellationToken);
+    public Task<ICollection<BaseTaskEvent>> GetEventsAsync(Guid aggregateId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Получить последнее события для агрегата
@@ -29,5 +30,5 @@ public interface ITaskEventStore
     /// <param name="aggregateId">Id агрегата</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Коллекция событий</returns>
-    public Task<ITaskEvent?> GetLastOrDefaultEventAsync(Guid aggregateId, CancellationToken cancellationToken);
+    public Task<BaseTaskEvent?> GetLastOrDefaultEventAsync(Guid aggregateId, CancellationToken cancellationToken);
 }

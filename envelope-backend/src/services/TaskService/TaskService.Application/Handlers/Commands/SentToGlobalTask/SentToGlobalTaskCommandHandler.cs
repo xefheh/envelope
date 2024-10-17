@@ -24,13 +24,13 @@ public class SentToGlobalTaskCommandHandler : IRequestHandler<SentToGlobalTaskCo
         
         switch (lastEvent)
         {
-            case null or TaskRemoved:
+            case null or BaseTaskRemoved:
                 return Result<Unit>.OnFailure(new NotFoundException(typeof(Task), request.Id));
-            case not TaskSentToCheck:
+            case not BaseTaskSentToCheck:
                 return Result<Unit>.OnFailure(new InvalidStateException(request.GetType()));
         }
 
-        var sentToGlobalEvent = new TaskSentToGlobal
+        var sentToGlobalEvent = new BaseTaskSentToGlobal
         {
             Id = lastEvent.Id,
             VersionId = lastEvent.VersionId + 1,

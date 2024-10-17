@@ -5,7 +5,7 @@ using TaskService.Domain.Events;
 
 namespace TaskService.Application.Handlers.Notifications.TaskProjectionNotificationsHandler;
 
-public class TaskProjectionRemoveNotificationHandler : INotificationHandler<TaskRemoved>
+public class TaskProjectionRemoveNotificationHandler : INotificationHandler<BaseTaskRemoved>
 {
     private readonly ITaskProjectionWriteOnlyRepository _repository;
 
@@ -14,7 +14,7 @@ public class TaskProjectionRemoveNotificationHandler : INotificationHandler<Task
         _repository = repository;
     }
     
-    public async Task Handle(TaskRemoved notification, CancellationToken cancellationToken)
+    public async Task Handle(BaseTaskRemoved notification, CancellationToken cancellationToken)
     {
         await _repository.RemoveAsync(notification.Id, cancellationToken);
     }

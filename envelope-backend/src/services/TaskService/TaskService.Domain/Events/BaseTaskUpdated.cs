@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using TaskService.Domain.Enums;
-using TaskService.Domain.Interfaces;
+using TaskService.Domain.Events.Base;
 
 namespace TaskService.Domain.Events;
 
 /// <summary>
 /// Событие: Задача обновлена
 /// </summary>
-public class TaskUpdated : ITaskEvent, INotification
+public class BaseTaskUpdated : BaseTaskEvent, INotification
 {
     /// <summary>
     /// Название
@@ -33,9 +33,4 @@ public class TaskUpdated : ITaskEvent, INotification
     /// Время выполнения (в секундах)
     /// </summary>
     public int? ExecutionTime { get; set; }
-    public Guid Id { get; set; }
-    
-    public int VersionId { get; set; }
-    
-    public DateTime EventDate { get; set; }
 }

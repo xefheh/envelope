@@ -22,12 +22,12 @@ public class RemoveTaskCommandHandler : IRequestHandler<RemoveTaskCommand, Resul
     {
         var lastEvent = await _eventStore.GetLastOrDefaultEventAsync(request.Id, cancellationToken);
         
-        if (lastEvent is null or TaskRemoved)
+        if (lastEvent is null or BaseTaskRemoved)
         {
             return Result<Unit>.OnFailure(new NotFoundException(typeof(Task), request.Id));
         }
 
-        var removeEvent = new TaskRemoved
+        var removeEvent = new BaseTaskRemoved
         {
             Id = request.Id,
             EventDate = DateTime.UtcNow,

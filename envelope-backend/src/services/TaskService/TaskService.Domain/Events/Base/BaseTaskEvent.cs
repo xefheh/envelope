@@ -1,9 +1,9 @@
-﻿namespace TaskService.Domain.Interfaces;
+﻿namespace TaskService.Domain.Events.Base;
 
 /// <summary>
 /// Интерфейс базового события
 /// </summary>
-public interface ITaskEvent
+public abstract class BaseTaskEvent
 {
     /// <summary>
     /// Айди агрегата

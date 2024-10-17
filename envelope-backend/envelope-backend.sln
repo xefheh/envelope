@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Tests", "tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursesService.Tests", "tests\services\CoursesService.Tests\CoursesService.Tests.csproj", "{D7231883-C8F3-42E6-B38B-756157F94161}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService.API", "src\services\TaskService\TaskService.API\TaskService.API.csproj", "{0E245068-07E5-4E78-A95F-D23EA7AC9FFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{D7231883-C8F3-42E6-B38B-756157F94161}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7231883-C8F3-42E6-B38B-756157F94161}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7231883-C8F3-42E6-B38B-756157F94161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E245068-07E5-4E78-A95F-D23EA7AC9FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E245068-07E5-4E78-A95F-D23EA7AC9FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E245068-07E5-4E78-A95F-D23EA7AC9FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E245068-07E5-4E78-A95F-D23EA7AC9FFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +123,7 @@ Global
 		{628B6742-D97F-4BDD-95DB-D370069CB214} = {09618C5C-C6FF-466B-9B3C-F64C4E61ADCA}
 		{C9CF4A37-2031-4695-BB54-DC5F95F622F3} = {29066DA3-DFB7-4F26-AFC1-A99934C1D0EB}
 		{D7231883-C8F3-42E6-B38B-756157F94161} = {29066DA3-DFB7-4F26-AFC1-A99934C1D0EB}
+		{0E245068-07E5-4E78-A95F-D23EA7AC9FFC} = {610BCBD5-A228-4A63-95C0-F1F31B94B6A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DF78641-8E68-4B66-AD8A-26DD6D99A988}
