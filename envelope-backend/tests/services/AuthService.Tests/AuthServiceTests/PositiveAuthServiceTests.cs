@@ -25,6 +25,7 @@ public class PositiveAuthServiceTests
         Assert.NotEmpty(userDTO.Token);
         Assert.Equal(request.Nickname, userDTO.Nickname);
         Assert.Equal(Role.Student.ToString(), userDTO.Role);
+        Assert.Equal(userDTO.UserId.ToString(), JWTHelper.GetClaimsFromToken(userDTO.Token)["Id"]);
     }
 
     [Fact]
@@ -53,5 +54,6 @@ public class PositiveAuthServiceTests
         Assert.NotEmpty(userDTO.Token);
         Assert.Equal(user.Nickname, userDTO.Nickname);
         Assert.Equal(Role.Teacher.ToString(), userDTO.Role);
+        Assert.Equal(userDTO.UserId.ToString(), JWTHelper.GetClaimsFromToken(userDTO.Token)["Id"]);
     }
 }
