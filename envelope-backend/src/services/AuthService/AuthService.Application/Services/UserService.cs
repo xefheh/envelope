@@ -41,8 +41,8 @@ public class UserService
         {
             UserId = user.Id,
             Nickname = user.Nickname,
-            Token = JWTGenerator.CreateJWT(user.Nickname),
-            Role = Role.Student.ToString()
+            Token = JWTHelper.CreateJWT(user.Nickname, user.Id.ToString()),
+            Role = user.Role.ToString()
         };
     }
 
@@ -81,7 +81,7 @@ public class UserService
         {
             UserId = user.Id,
             Nickname = user.Nickname,
-            Token = JWTGenerator.CreateJWT(user.Nickname),
+            Token = JWTHelper.CreateJWT(user.Nickname, user.Id.ToString()),
             Role = user.Role.ToString()
         };
     }
