@@ -1,6 +1,7 @@
 ﻿using AuthService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-namespace AuthService.Persistance.Data;
+
+namespace AuthService.Persistence.Data;
 
 public class UserContext : DbContext
 {
