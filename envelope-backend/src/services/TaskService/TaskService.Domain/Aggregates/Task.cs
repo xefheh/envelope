@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using TaskService.Domain.Enums;
 using TaskService.Domain.Events;
+using TaskService.Domain.Events.Base;
 using TaskService.Domain.Interfaces;
 
 namespace TaskService.Domain.Aggregates;
@@ -8,7 +9,7 @@ namespace TaskService.Domain.Aggregates;
 /// <summary>
 /// Задача
 /// </summary>
-public class Task : IAggregate<ITaskEvent>
+public class Task : IAggregate<BaseTaskEvent>
 {
     /// <summary>
     /// Суррогатный ключ
@@ -65,26 +66,26 @@ public class Task : IAggregate<ITaskEvent>
     /// </summary>
     /// <param name="event">Событие</param>
     /// <exception cref="InvalidOperationException">Ошибка, при неизвестном событии</exception>
-    public void Apply(ITaskEvent @event)
+    public void Apply(BaseTaskEvent @event)
     {
         switch (@event)
         {
-            case TaskCreated e:
+            case BaseTaskCreated e:
                 Apply(e);
                 break;
-            case TaskRemoved e:
+            case BaseTaskRemoved e:
                 Apply(e);
                 break;
-            case TaskSentToCheck e:
+            case BaseTaskSentToCheck e:
                 Apply(e);
                 break;
-            case TaskUpdated e:
+            case BaseTaskUpdated e:
                 Apply(e);
                 break;
-            case TaskSentToGlobal e:
+            case BaseTaskSentToGlobal e:
                 Apply(e);
                 break;
-            case TaskRefused e:
+            case BaseTaskRefused e:
                 Apply(e);
                 break;
             default:
@@ -92,7 +93,7 @@ public class Task : IAggregate<ITaskEvent>
         }
     }
 
-    private void Apply(TaskCreated @event)
+    private void Apply(BaseTaskCreated @event)
     {
         Id = @event.Id;
         Name = @event.Name;
@@ -104,22 +105,22 @@ public class Task : IAggregate<ITaskEvent>
         CreationDate = @event.EventDate;
     }
 
-    private void Apply(TaskRemoved _)
+    private void Apply(BaseTaskRemoved _)
     {
         Id = Guid.Empty;
     }
 
-    private void Apply(TaskSentToCheck _)
+    private void Apply(BaseTaskSentToCheck _)
     {
         State = TaskGlobalState.WaitCheck;
     }
 
-    private void Apply(TaskSentToGlobal _)
+    private void Apply(BaseTaskSentToGlobal _)
     {
         State = TaskGlobalState.Global;
     }
 
-    private void Apply(TaskUpdated @event)
+    private void Apply(BaseTaskUpdated @event)
     {
         Name = @event.Name;
         Description = @event.Description;
@@ -129,7 +130,7 @@ public class Task : IAggregate<ITaskEvent>
         UpdateDate = @event.EventDate;
     }
 
-    private void Apply(TaskRefused _)
+    private void Apply(BaseTaskRefused _)
     {
         State = TaskGlobalState.Local;
     }

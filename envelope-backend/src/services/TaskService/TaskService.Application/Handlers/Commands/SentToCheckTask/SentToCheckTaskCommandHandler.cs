@@ -26,13 +26,13 @@ public class SentToCheckTaskCommandHandler : IRequestHandler<SentToCheckTaskComm
         
         switch (lastEvent)
         {
-            case null or TaskRemoved:
+            case null or BaseTaskRemoved:
                 return Result<Unit>.OnFailure(new NotFoundException(typeof(Task), request.Id));
-            case TaskSentToCheck or TaskSentToGlobal:
+            case BaseTaskSentToCheck or BaseTaskSentToGlobal:
                 return Result<Unit>.OnFailure(new InvalidStateException(request.GetType()));
         }
 
-        var sentToCheckEvent = new TaskSentToCheck
+        var sentToCheckEvent = new BaseTaskSentToCheck
         {
             Id = lastEvent.Id,
             VersionId = lastEvent.VersionId + 1,
