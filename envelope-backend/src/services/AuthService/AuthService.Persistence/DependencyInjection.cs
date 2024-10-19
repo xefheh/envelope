@@ -21,14 +21,14 @@ public static class DependencyInjection
     {
         var dataBaseName = "UsersDataBase";
 
-        var eventStoreConnectionString = configuration.GetConnectionString(dataBaseName);
+        var userDataBaseConnectionString = configuration.GetConnectionString(dataBaseName);
 
-        if (eventStoreConnectionString is null)
+        if (userDataBaseConnectionString is null)
         {
             throw new NotFoundConnectionStringException($"{dataBaseName} not found");
         }
 
-        services.AddDbContext<UserContext>(builder => builder.UseNpgsql(eventStoreConnectionString));
+        services.AddDbContext<UserContext>(builder => builder.UseNpgsql(userDataBaseConnectionString));
 
         services.AddScoped<IUserRepository, UserRepository>();
     }
