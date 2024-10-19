@@ -1,9 +1,9 @@
 ﻿using AuthService.Application.Repositories;
 using AuthService.Domain.Entities;
-using AuthService.Persistance.Data;
+using AuthService.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthService.Persistance.Repositories;
+namespace AuthService.Persistence.Repositories;
 
 public class UserRepository : IUserRepository 
 {
@@ -16,7 +16,7 @@ public class UserRepository : IUserRepository
 
     public async Task Create(User user)
     {
-        _context.Attach(user);
+        _context.Add(user);
         await _context.SaveChangesAsync();
     }
 
