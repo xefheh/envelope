@@ -21,7 +21,8 @@ public class CourseBlockRepository: ICourseBlockRepository
 
         var blockId = Guid.NewGuid();
         courseBlock.Id = blockId;
-        course.Blocks.Add(courseBlock);
+        courseBlock.Course = course;
+        _context.CourseBlocks.Add(courseBlock);
         await _context.SaveChangesAsync(cancellationToken);
         
         return courseBlock.Id;

@@ -10,6 +10,6 @@ public class CourseBlockConfiguration : IEntityTypeConfiguration<CourseBlock>
     {
         builder.HasKey(b => b.Id);
         builder.HasIndex(b => b.Id).IsUnique();
-        builder.OwnsMany(b => b.Tasks);
+        builder.HasMany(b => b.Tasks);
     }
 }

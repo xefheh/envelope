@@ -17,8 +17,12 @@ public class CourseBlockService: ICourseBlockService
     public async Task<Result<Guid>> AddAsync(AddCourseBlockRequest request, CancellationToken cancellationToken)
     {
         var block = CourseBlockRequestToModelMapping.MapToModel(request);
+        
         var id = await _repository.AddAsync(block, cancellationToken);
-        return Result<Guid>.OnSuccess(id);
+        
+        return id == default ?
+            Result<Guid>.OnError(new NotFoundException(typeof(Course), request.CourseId)) :
+            Result<Guid>.OnSuccess(id);
     }
 
     public async Task<Result<bool>> RemoveAsync(Guid id, CancellationToken cancellationToken)

@@ -6,5 +6,5 @@ public class CourseBlockInfo
     public string NameOfBlock { get; set; } = null!;
     public string Description { get; set; } = null!;
     
-    public ICollection<CourseTaskInfo> Blocks { get; set; } = new List<CourseTaskInfo>();
+    public ICollection<CourseTaskInfo> Tasks { get; set; } = new List<CourseTaskInfo>();
 }

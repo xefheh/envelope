@@ -42,7 +42,7 @@ public static class CourseRequestToModelMapping
                 Id = b.Id,
                 Description = b.Description,
                 NameOfBlock = b.NameOfBlock,
-                Blocks = b.Tasks
+                Tasks = b.Tasks
                     .Select(t =>
                     new CourseTaskInfo
                     {
