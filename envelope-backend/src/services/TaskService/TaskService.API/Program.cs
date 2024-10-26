@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using TaskService.Application;
 using TaskService.Persistence;
+using TaskService.Persistence.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +21,16 @@ services
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var eventStoreContext = scope.ServiceProvider.GetRequiredService<TaskEventStoreContext>();
+    eventStoreContext.Database.Migrate();
+    var projectionContext = scope.ServiceProvider.GetRequiredService<TaskWriteOnlyContext>();
+    projectionContext.Database.Migrate(); 
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
