@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoursesService.API.Controllers;
 
+[ApiController]
+[Route("/[controller]")]
 public class CourseBlockController: ControllerBase
 {
     private readonly ICourseBlockService _courseBlockService;
@@ -13,12 +15,15 @@ public class CourseBlockController: ControllerBase
         _courseBlockService = courseBlockService;
     }
 
+    [HttpPost]
     public async Task<ActionResult<Guid>> AddCourseAsync(AddCourseBlockRequest request, CancellationToken cancellationToken)
     {
         var id = await _courseBlockService.AddAsync(request, cancellationToken);
-        return Ok(id.Value);
+        if(id.IsSuccess) return Ok(id.Value);
+        return NotFound(id.Exception!.Message);
     }
 
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<bool>> RemoveCourseAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _courseBlockService.RemoveAsync(id, cancellationToken);
@@ -27,6 +32,7 @@ public class CourseBlockController: ControllerBase
         return NotFound(isDeleted.Exception!.Message);
     }
 
+    [HttpPut]
     public async Task<ActionResult<bool>> UpdateCourseAsync(UpdateCourseBlockRequest request, CancellationToken cancellationToken)
     {
         var isUpdated = await _courseBlockService.UpdateAsync(request, cancellationToken);

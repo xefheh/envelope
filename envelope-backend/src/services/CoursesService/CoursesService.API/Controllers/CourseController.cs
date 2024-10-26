@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoursesService.API.Controllers;
 
+[ApiController]
+[Route("/[controller]")]
 public class CourseController: ControllerBase
 {
     private readonly ICourseService _courseService;
@@ -15,6 +17,7 @@ public class CourseController: ControllerBase
         _courseService = courseService;
     }
 
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<CourseResponse>> GetCourseAsync(Guid id, CancellationToken cancellationToken)
     {
         var course = await _courseService.GetAsync(id, cancellationToken);
@@ -22,18 +25,21 @@ public class CourseController: ControllerBase
         return NotFound(course.Exception!.Message);
     }
 
+    [HttpGet]
     public async Task<ActionResult<CourseSearchResponse>> GetCoursesAsync(CancellationToken cancellationToken)
     {
         var courses = await _courseService.GetCoursesAsync(cancellationToken);
         return Ok(courses.Value);
     }
 
+    [HttpPost]
     public async Task<ActionResult<Guid>> AddCourseAsync(AddCourseRequest request, CancellationToken cancellationToken)
     {
         var id = await _courseService.AddAsync(request, cancellationToken);
         return Ok(id.Value);
     }
 
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<bool>> RemoveCourseAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _courseService.RemoveAsync(id, cancellationToken);
@@ -42,6 +48,7 @@ public class CourseController: ControllerBase
         return NotFound(isDeleted.Exception!.Message);
     }
 
+    [HttpPut]
     public async Task<ActionResult<bool>> UpdateCourseAsync(UpdateCourseRequest request, CancellationToken cancellationToken)
     {
         var isUpdated = await _courseService.UpdateAsync(request, cancellationToken);

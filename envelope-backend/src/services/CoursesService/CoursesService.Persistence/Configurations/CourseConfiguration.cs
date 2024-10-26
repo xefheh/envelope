@@ -10,7 +10,7 @@ public class CourseConfiguration: IEntityTypeConfiguration<Course>
     {
         builder.HasKey(course => course.Id);
         builder.HasIndex(course => course.Id).IsUnique();
-        builder.OwnsMany(course => course.Blocks)
-            .WithOwner(block => block.Course);
+        builder.HasMany(course => course.Blocks)
+            .WithOne(block => block.Course);
     }
 }

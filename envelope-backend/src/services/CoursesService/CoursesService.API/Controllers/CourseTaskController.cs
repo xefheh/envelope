@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoursesService.API.Controllers;
 
+[ApiController]
+[Route("/[controller]")]
 public class CourseTaskController: ControllerBase
 {
     private readonly ICourseTaskService _courseTaskService;
@@ -13,12 +15,15 @@ public class CourseTaskController: ControllerBase
         _courseTaskService = courseTaskService;
     }
 
+    [HttpPost]
     public async Task<ActionResult<Guid>> AddCourseAsync(AddCourseTaskRequest request, CancellationToken cancellationToken)
     {
         var id = await _courseTaskService.AddAsync(request, cancellationToken);
-        return Ok(id.Value);
+        if(id.IsSuccess) return Ok(id.Value);
+        return NotFound(id.Exception!.Message);
     }
 
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<bool>> RemoveCourseAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _courseTaskService.RemoveAsync(id, cancellationToken);

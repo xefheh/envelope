@@ -17,7 +17,9 @@ public class CourseTaskService: ICourseTaskService
     {
         var task = CourseTaskRequestToModelMapping.MapToModel(request);
         var id = await _repository.AddAsync(task, cancellationToken);
-        return Result<Guid>.OnSuccess(id);
+        return id != default ? 
+            Result<Guid>.OnSuccess(id) :
+            Result<Guid>.OnError(new NotFoundException(typeof(CourseBlock), request.BlockId));
     }
 
     public async Task<Result<bool>> RemoveAsync(Guid id, CancellationToken cancellationToken)

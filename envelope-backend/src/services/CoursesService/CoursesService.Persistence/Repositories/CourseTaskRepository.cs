@@ -12,7 +12,6 @@ public class CourseTaskRepository: ICourseTaskRepository
     public async Task<Guid> AddAsync(CourseTask courseTask, CancellationToken cancellationToken)
     {
         var courseBlock = await _context.CourseBlocks
-            .Include(cb => cb.Tasks)
             .FirstOrDefaultAsync(cb => cb.Id == courseTask.Block.Id, cancellationToken);
 
         if (courseBlock == default)
@@ -22,7 +21,9 @@ public class CourseTaskRepository: ICourseTaskRepository
 
         var taskId = Guid.NewGuid();
         courseTask.Id = taskId;
-        courseBlock.Tasks.Add(courseTask);
+        courseTask.Block = courseBlock;
+        
+        _context.CourseTasks.Add(courseTask);
         
         await _context.SaveChangesAsync(cancellationToken);
         return taskId;
