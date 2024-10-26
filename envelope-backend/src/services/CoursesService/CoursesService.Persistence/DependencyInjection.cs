@@ -1,4 +1,3 @@
-using AuthService.Persistence.Repositories;
 using CoursesService.Application.Repositories;
 using CoursesService.Persistence.Repositories;
 using CoursesService.Persistence.Exceptions;
