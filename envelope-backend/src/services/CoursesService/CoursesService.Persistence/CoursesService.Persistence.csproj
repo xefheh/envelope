@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\AuthService\AuthService.Persistence\AuthService.Persistence.csproj" />
       <ProjectReference Include="..\CoursesService.Application\CoursesService.Application.csproj" />
       <ProjectReference Include="..\CoursesService.Domain\CoursesService.Domain.csproj" />
     </ItemGroup>
@@ -22,6 +23,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
       <PackageReference Include="Npgsql" Version="8.0.4" />
     </ItemGroup>
 
