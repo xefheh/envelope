@@ -36,7 +36,10 @@ public class NegativeAuthServiceTetsts
             Password = "password",
         };
 
-        await Assert.ThrowsAsync<UsernameExistsException>(async () => await authService.Register(request));
+        var result = await authService.Register(request);
+
+        Assert.False(result.IsSuccess);
+        Assert.IsType<UsernameExistsException>(result.Exception);
     }
 
     [Fact]
@@ -52,7 +55,10 @@ public class NegativeAuthServiceTetsts
             Password = "password",
         };
 
-        await Assert.ThrowsAsync<InvalidEmailException>(async () => await authService.Register(request));
+        var result = await authService.Register(request);
+
+        Assert.False(result.IsSuccess);
+        Assert.IsType<InvalidEmailException>(result.Exception);
     }
 
     [Fact]
@@ -68,7 +74,10 @@ public class NegativeAuthServiceTetsts
             Password = "password",
         };
 
-        await Assert.ThrowsAsync<EmailExistsException>(async () => await authService.Register(request));
+        var result = await authService.Register(request);
+
+        Assert.False(result.IsSuccess);
+        Assert.IsType<EmailExistsException>(result.Exception);
     }
 
     [Fact]
@@ -83,7 +92,10 @@ public class NegativeAuthServiceTetsts
             Password = "password"
         };
 
-        await Assert.ThrowsAsync<EmailNotExistsException>(async () => await authService.Login(request));
+        var result = await authService.Login(request);
+
+        Assert.False(result.IsSuccess);
+        Assert.IsType<EmailNotExistsException>(result.Exception);
     }
 
     [Fact]
@@ -98,7 +110,10 @@ public class NegativeAuthServiceTetsts
             Password = "password"
         };
 
-        await Assert.ThrowsAsync<UsernameNotExistsException>(async () => await authService.Login(request));
+        var result = await authService.Login(request);
+
+        Assert.False(result.IsSuccess);
+        Assert.IsType<UsernameNotExistsException>(result.Exception);
     }
 
     [Fact]
@@ -113,6 +128,9 @@ public class NegativeAuthServiceTetsts
             Password = "1234"
         };
 
-        await Assert.ThrowsAsync<InvalidPasswordException>(async () => await authService.Login(request));
+        var result = await authService.Login(request);
+
+        Assert.False(result.IsSuccess);
+        Assert.IsType<InvalidPasswordException>(result.Exception);
     }
 }

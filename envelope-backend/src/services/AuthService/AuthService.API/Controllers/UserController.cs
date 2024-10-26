@@ -19,53 +19,49 @@ namespace AuthService.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            try
+            var result = await _userService.Register(request);
+
+            if (result.IsSuccess)
             {
-                var userDTO = await _userService.Register(request);
-                return Ok(userDTO);
+                return Ok(result.Value);
             }
-            catch (UsernameExistsException usernameExistsException)
+
+            var typeException = result.Exception.GetType();
+
+            var isIncorrectData = typeException == typeof(UsernameExistsException)
+                || typeException == typeof(InvalidEmailException)
+                || typeException == typeof(EmailExistsException);
+
+            if (isIncorrectData)
             {
-                return BadRequest(new { message = usernameExistsException.Message});
+                return BadRequest(new { message = result.Exception.Message });
             }
-            catch (InvalidEmailException invalidEmailException)
-            {
-                return BadRequest(new { message = invalidEmailException.Message });
-            }
-            catch (EmailExistsException emailExistsException)
-            {
-                return BadRequest(new { message = emailExistsException.Message });
-            }
-            catch (Exception exception)
-            {
-                return StatusCode(500, exception.Message);
-            }
+
+            return StatusCode(500, result.Exception.Message);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            try
+            var result = await _userService.Login(request);
+
+            if (result.IsSuccess)
             {
-                var userDTO = await _userService.Login(request);
-                return Ok(userDTO);
+                return Ok(result.Value);
             }
-            catch (InvalidPasswordException invalidPasswordException)
+
+            var typeException = result.Exception.GetType();
+
+            var isIncorrectData = typeException == typeof(InvalidPasswordException)
+                || typeException == typeof(EmailNotExistsException)
+                || typeException == typeof(UsernameNotExistsException);
+
+            if (isIncorrectData)
             {
-                return BadRequest(new { message = invalidPasswordException.Message });
+                return BadRequest(new { message = result.Exception.Message });
             }
-            catch (EmailNotExistsException emailNotExistsException)
-            {
-                return BadRequest(new { message = emailNotExistsException.Message });
-            }
-            catch (UsernameNotExistsException usernameNotExistsException)
-            {
-                return BadRequest(new { message = usernameNotExistsException.Message });
-            }
-            catch (Exception exception)
-            {
-                return StatusCode(500, exception.Message);
-            }
+
+            return StatusCode(500, result.Exception.Message);
         }
     }
 }

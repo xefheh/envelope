@@ -19,13 +19,14 @@ public class PositiveAuthServiceTests
             Password = "parol",
         };
         
-        var userDTO = await authService.Register(request);
+        var result = await authService.Register(request);
 
-        Assert.NotNull(userDTO);
-        Assert.NotEmpty(userDTO.Token);
-        Assert.Equal(request.Nickname, userDTO.Nickname);
-        Assert.Equal(Role.Student.ToString(), userDTO.Role);
-        Assert.Equal(userDTO.UserId.ToString(), JWTHelper.GetClaimsFromToken(userDTO.Token)["Id"]);
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
+        Assert.NotEmpty(result.Value.Token);
+        Assert.Equal(request.Nickname, result.Value.Nickname);
+        Assert.Equal(Role.Student.ToString(), result.Value.Role);
+        Assert.Equal(result.Value.UserId.ToString(), JWTHelper.GetClaimsFromToken(result.Value.Token)["Id"]);
     }
 
     [Fact]
@@ -48,12 +49,13 @@ public class PositiveAuthServiceTests
             Password = "password"
         };
 
-        var userDTO = await authService.Login(request);
+        var result = await authService.Login(request);
 
-        Assert.NotNull(userDTO);
-        Assert.NotEmpty(userDTO.Token);
-        Assert.Equal(user.Nickname, userDTO.Nickname);
-        Assert.Equal(Role.Teacher.ToString(), userDTO.Role);
-        Assert.Equal(userDTO.UserId.ToString(), JWTHelper.GetClaimsFromToken(userDTO.Token)["Id"]);
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
+        Assert.NotEmpty(result.Value.Token);
+        Assert.Equal(user.Nickname, result.Value.Nickname);
+        Assert.Equal(Role.Teacher.ToString(), result.Value.Role);
+        Assert.Equal(result.Value.UserId.ToString(), JWTHelper.GetClaimsFromToken(result.Value.Token)["Id"]);
     }
 }
