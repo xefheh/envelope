@@ -1,0 +1,7 @@
+@import url('./assets/styles/reset.css');
+@import url('./assets/styles/fonts.css');
+@import url('./assets/styles/variables.css');
+
+:root {
+  font-family: var(--mainFontfamilty);
+}
