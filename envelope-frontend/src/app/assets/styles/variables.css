@@ -1,0 +1,9 @@
+:root {
+    --primaryColor: #75F088;
+    --secondaryColor: #7F57D1;
+    --lightGrayFillColor: #D9D9D9;
+    --grayFillColor: #808080;
+    --darkerGrayFillColor: #625B70;
+    
+    --mainFontfamilty: 'Montserrat', sans-serif;
+}
