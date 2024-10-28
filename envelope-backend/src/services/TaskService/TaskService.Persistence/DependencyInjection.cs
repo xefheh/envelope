@@ -66,7 +66,7 @@ public static class DependencyInjection
             throw new NotFoundConnectionStringException("TaskProjectionDatabase");
         }
         
-        services.AddDbContext<TaskEventStoreContext>(builder => builder
+        services.AddDbContext<TaskReadOnlyContext>(builder => builder
             .UseNpgsql(taskProjectionDatabaseConnectionString)
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         
@@ -90,7 +90,7 @@ public static class DependencyInjection
             throw new NotFoundConnectionStringException("TaskProjectionDatabase");
         }
         
-        services.AddDbContext<TaskEventStoreContext>(builder => builder
+        services.AddDbContext<TaskWriteOnlyContext>(builder => builder
             .UseNpgsql(taskProjectionDatabaseConnectionString));
         
         services.AddScoped<IGlobalProjectionWriteOnlyRepository, EfGlobalProjectionWriteOnlyRepository>();

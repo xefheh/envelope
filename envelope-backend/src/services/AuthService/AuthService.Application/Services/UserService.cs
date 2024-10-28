@@ -1,4 +1,5 @@
-﻿using AuthService.Application.Exceptions;
+﻿using AuthService.Application.Common;
+using AuthService.Application.Exceptions;
 using AuthService.Application.Repositories;
 using AuthService.Application.Requests;
 using AuthService.Application.Responses;
@@ -20,9 +21,14 @@ public class UserService
         _userRepository = userRepository;
     }
 
-    public async Task<UserDTO> Register(RegisterRequest request)
+    public async Task<Result<UserDTO>> Register(RegisterRequest request)
     {
-        await CheckAvailabilityUserData(request);
+        var exception =  await CheckAvailabilityUserData(request);
+
+        if (exception is not null)
+        {
+            return Result<UserDTO>.OnFailure(exception);
+        }
 
         var password = HashHelper.CalculateMD5HashForString(request.Password);
 
@@ -37,56 +43,68 @@ public class UserService
 
         await _userRepository.Create(user);
 
-        return new UserDTO()
+        var result = new UserDTO()
         {
             UserId = user.Id,
             Nickname = user.Nickname,
-            Token = JWTGenerator.CreateJWT(user.Nickname),
-            Role = Role.Student.ToString()
+            Token = JWTHelper.CreateJWT(user.Nickname, user.Id.ToString()),
+            Role = user.Role.ToString()
         };
+
+        return Result<UserDTO>.OnSuccess(result);
     }
 
-    private async Task CheckAvailabilityUserData(RegisterRequest request)
+    private async Task<Exception?> CheckAvailabilityUserData(RegisterRequest request)
     {
         User? userByNickname = await _userRepository.GetUserByNickname(request.Nickname);
 
         if (userByNickname is not null)
         {
-            throw new UsernameExistsException($"This nickname is: {request.Nickname} is busy!");
+            return new UsernameExistsException($"This nickname is: {request.Nickname} is busy!");
         }
 
         if (!Regex.IsMatch(request.Email, EmailPattern))
         {
-            throw new InvalidEmailException($"Invalid email: {request.Email}!");
+            return new InvalidEmailException($"Invalid email: {request.Email}!");
         }
 
         User? userByEmail = await _userRepository.GetUserByEmail(request.Email);
 
         if (userByEmail is not null)
         {
-            throw new EmailExistsException($"This email is: {request.Email} already in use!");
+            return new EmailExistsException($"This email is: {request.Email} already in use!");
         }
+
+        return null;
     }
 
-    public async Task<UserDTO> Login(LoginRequest request)
+    public async Task<Result<UserDTO>> Login(LoginRequest request)
     {
-        User? user = await FindUserByLogin(request.Login);
+        Result<User> foundResult = await FindUserByLogin(request.Login);
 
-        if (user.Password != HashHelper.CalculateMD5HashForString(request.Password))
+        if (!foundResult.IsSuccess) 
         {
-            throw new InvalidPasswordException("Incorrect password!");
+            return Result<UserDTO>.OnFailure(foundResult.Exception);
         }
 
-        return new UserDTO()
+        var user = foundResult.Value;
+        if (user.Password != HashHelper.CalculateMD5HashForString(request.Password))
+        {
+            return Result<UserDTO>.OnFailure(new InvalidPasswordException("Incorrect password!"));
+        }
+
+        var result = new UserDTO()
         {
             UserId = user.Id,
             Nickname = user.Nickname,
-            Token = JWTGenerator.CreateJWT(user.Nickname),
+            Token = JWTHelper.CreateJWT(user.Nickname, user.Id.ToString()),
             Role = user.Role.ToString()
         };
+
+        return Result<UserDTO>.OnSuccess(result);
     }
 
-    private async Task<User> FindUserByLogin(string login)
+    private async Task<Result<User>> FindUserByLogin(string login)
     {
         User? user = null;
 
@@ -96,7 +114,8 @@ public class UserService
 
             if (user is null)
             {
-                throw new EmailNotExistsException($"A user with this email: {login} does not exist!");
+                var exception = new EmailNotExistsException($"A user with this email: {login} does not exist!");
+                return Result<User>.OnFailure(exception);
             }
         }
         else
@@ -105,10 +124,11 @@ public class UserService
 
             if (user is null)
             {
-                throw new UsernameNotExistsException($"A user with this nickname: {login} does not exist!");
+                var exception = new UsernameNotExistsException($"A user with this nickname: {login} does not exist!");
+                return Result<User>.OnFailure(exception);
             }
         }
 
-        return user;
+        return Result<User>.OnSuccess(user);
     }
 }
