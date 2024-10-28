@@ -1,0 +1,10 @@
+.mainContainer {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.mainContent {
+    margin-top: 100px;
+    flex-grow: 1;
+}
