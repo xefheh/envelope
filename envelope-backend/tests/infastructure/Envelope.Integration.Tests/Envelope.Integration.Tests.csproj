@@ -7,12 +7,12 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <RootNamespace>CoursesService.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="Testcontainers.RabbitMq" Version="3.10.0" />
         <PackageReference Include="xunit" Version="2.5.3"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
     </ItemGroup>
@@ -22,10 +22,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Application\CoursesService.Application.csproj" />
-      <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Domain\CoursesService.Domain.csproj" />
-      <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Application\CoursesService.Application.csproj" />
-      <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Domain\CoursesService.Domain.csproj" />
+      <ProjectReference Include="..\..\..\src\infrastructure\Envelope.Integration\Envelope.Integration.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Options">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.Extensions.Options.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
