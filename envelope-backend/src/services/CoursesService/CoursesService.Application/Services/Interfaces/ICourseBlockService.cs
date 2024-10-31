@@ -1,5 +1,5 @@
-using CoursesService.Application.Common;
 using CoursesService.Application.Requests.CoursBlock;
+using Envelope.Common.ResultPattern;
 
 namespace CoursesService.Application.Services.Interfaces;
 

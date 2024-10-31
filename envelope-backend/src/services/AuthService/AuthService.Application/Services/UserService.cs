@@ -1,5 +1,4 @@
-﻿using AuthService.Application.Common;
-using AuthService.Application.Exceptions;
+﻿using AuthService.Application.Exceptions;
 using AuthService.Application.Repositories;
 using AuthService.Application.Requests;
 using AuthService.Application.Responses;
@@ -7,6 +6,7 @@ using AuthService.Application.Utilities;
 using AuthService.Domain.Entities;
 using AuthService.Domain.Enums;
 using System.Text.RegularExpressions;
+using Envelope.Common.ResultPattern;
 
 namespace AuthService.Application.Services;
 

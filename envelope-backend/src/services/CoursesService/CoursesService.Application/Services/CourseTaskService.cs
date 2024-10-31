@@ -1,10 +1,10 @@
-using CoursesService.Application.Common;
-using CoursesService.Application.Exceptions;
+using Envelope.Common.Exceptions;
 using CoursesService.Application.Mapping;
 using CoursesService.Application.Repositories;
 using CoursesService.Application.Requests.CoursTasks;
 using CoursesService.Application.Services.Interfaces;
 using CoursesService.Domain.Entities;
+using Envelope.Common.ResultPattern;
 
 namespace CoursesService.Application.Services;
 
@@ -19,14 +19,14 @@ public class CourseTaskService: ICourseTaskService
         var id = await _repository.AddAsync(task, cancellationToken);
         return id != default ? 
             Result<Guid>.OnSuccess(id) :
-            Result<Guid>.OnError(new NotFoundException(typeof(CourseBlock), request.BlockId));
+            Result<Guid>.OnFailure(new NotFoundException(typeof(CourseBlock), request.BlockId));
     }
 
     public async Task<Result<bool>> RemoveAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _repository.RemoveAsync(id, cancellationToken);
         return !isDeleted
-            ? Result<bool>.OnError(new NotFoundException(typeof(CourseTask), id))
+            ? Result<bool>.OnFailure(new NotFoundException(typeof(CourseTask), id))
             : Result<bool>.OnSuccess(true);
     }
 }

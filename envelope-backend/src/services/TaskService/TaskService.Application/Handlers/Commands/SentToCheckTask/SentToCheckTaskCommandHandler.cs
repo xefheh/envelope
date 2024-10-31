@@ -1,5 +1,6 @@
-﻿using MediatR;
-using TaskService.Application.Common;
+﻿using Envelope.Common.Exceptions;
+using MediatR;
+using Envelope.Common.ResultPattern;
 using TaskService.Application.EventBus.Interfaces;
 using TaskService.Application.EventStore;
 using TaskService.Application.Exceptions;

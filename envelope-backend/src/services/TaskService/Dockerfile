@@ -7,18 +7,23 @@ ENV ASPNETCORE_URLS="http://+:8081"
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["TaskService.API/TaskService.API.csproj", "TaskService.API/"]
-COPY ["TaskService.Persistence/TaskService.Persistence.csproj", "TaskService.Persistence/"]
-COPY ["TaskService.Domain/TaskService.Domain.csproj", "TaskService.Domain/"]
-COPY ["TaskService.Application/TaskService.Application.csproj", "TaskService.Application/"]
-RUN dotnet restore "TaskService.API/TaskService.API.csproj"
+COPY ["services/TaskService/TaskService.API/TaskService.API.csproj", "service/src/TaskService.API/"]
+COPY ["services/TaskService/TaskService.Persistence/TaskService.Persistence.csproj", "service/src/TaskService.Persistence/"]
+COPY ["services/TaskService/TaskService.Domain/TaskService.Domain.csproj", "service/src/TaskService.Domain/"]
+COPY ["services/TaskService/TaskService.Application/TaskService.Application.csproj", "service/src/TaskService.Application/"]
+COPY ["infrastructure/Envelope.Common/Envelope.Common.csproj", "infrastructure/Envelope.Common/"]
+COPY ["infrastructure/Envelope.Integration/Envelope.Integration.csproj", "infrastructure/Envelope.Integration/"]
 
-COPY TaskService.API/. TaskService.API/
-COPY TaskService.Application/. TaskService.Application/
-COPY TaskService.Domain/. TaskService.Domain/
-COPY TaskService.Persistence/. TaskService.Persistence/
+RUN dotnet restore "service/src/TaskService.API/TaskService.API.csproj"
 
-WORKDIR "/src/TaskService.API"
+COPY services/TaskService/TaskService.API/. service/src/TaskService.API/
+COPY services/TaskService/TaskService.Application/. service/src/TaskService.Application/
+COPY services/TaskService/TaskService.Domain/. service/src/TaskService.Domain/
+COPY services/TaskService/TaskService.Persistence/. service/src/TaskService.Persistence/
+COPY infrastructure/Envelope.Common/. infrastructure/Envelope.Common/
+COPY infrastructure/Envelope.Integration/. infrastructure/Envelope.Integration/
+
+WORKDIR "/src/service/src/TaskService.API"
 RUN dotnet build "TaskService.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

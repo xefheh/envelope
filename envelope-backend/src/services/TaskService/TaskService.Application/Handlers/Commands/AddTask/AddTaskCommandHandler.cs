@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskService.Application.Common;
+using Envelope.Common.ResultPattern;
 using TaskService.Application.EventBus.Interfaces;
 using TaskService.Application.EventStore;
 using TaskService.Domain.Events;

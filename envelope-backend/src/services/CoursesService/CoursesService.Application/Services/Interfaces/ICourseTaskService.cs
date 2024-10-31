@@ -1,5 +1,5 @@
-using CoursesService.Application.Common;
 using CoursesService.Application.Requests.CoursTasks;
+using Envelope.Common.ResultPattern;
 
 namespace CoursesService.Application.Services.Interfaces;
 
