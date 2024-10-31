@@ -7,18 +7,23 @@ ENV ASPNETCORE_URLS="http://+:8082"
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CoursesService.API/CoursesService.API.csproj", "CoursesService.API/"]
-COPY ["CoursesService.Persistence/CoursesService.Persistence.csproj", "CoursesService.Persistence/"]
-COPY ["CoursesService.Domain/CoursesService.Domain.csproj", "CoursesService.Domain/"]
-COPY ["CoursesService.Application/CoursesService.Application.csproj", "CoursesService.Application/"]
-RUN dotnet restore "CoursesService.API/CoursesService.API.csproj"
+COPY ["services/CoursesService/CoursesService.API/CoursesService.API.csproj", "service/src/CoursesService.API/"]
+COPY ["services/CoursesService/CoursesService.Persistence/CoursesService.Persistence.csproj", "service/src/CoursesService.Persistence/"]
+COPY ["services/CoursesService/CoursesService.Domain/CoursesService.Domain.csproj", "service/src/CoursesService.Domain/"]
+COPY ["services/CoursesService/CoursesService.Application/CoursesService.Application.csproj", "service/src/CoursesService.Application/"]
+COPY ["infrastructure/Envelope.Common/Envelope.Common.csproj", "infrastructure/Envelope.Common/"]
+COPY ["infrastructure/Envelope.Integration/Envelope.Integration.csproj", "infrastructure/Envelope.Integration/"]
 
-COPY CoursesService.API/. CoursesService.API/
-COPY CoursesService.Application/. CoursesService.Application/
-COPY CoursesService.Domain/. CoursesService.Domain/
-COPY CoursesService.Persistence/. CoursesService.Persistence/
+RUN dotnet restore "service/src/CoursesService.API/CoursesService.API.csproj"
 
-WORKDIR "/src/CoursesService.API"
+COPY services/CoursesService/CoursesService.API/. service/src/CoursesService.API/
+COPY services/CoursesService/CoursesService.Application/. service/src/CoursesService.Application/
+COPY services/CoursesService/CoursesService.Domain/. service/src/CoursesService.Domain/
+COPY services/CoursesService/CoursesService.Persistence/. service/src/CoursesService.Persistence/
+COPY infrastructure/Envelope.Common/. infrastructure/Envelope.Common/
+COPY infrastructure/Envelope.Integration/. infrastructure/Envelope.Integration/
+
+WORKDIR "/src/service/src/CoursesService.API"
 RUN dotnet build "CoursesService.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

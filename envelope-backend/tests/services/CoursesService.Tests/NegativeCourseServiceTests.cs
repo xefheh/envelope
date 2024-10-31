@@ -1,4 +1,4 @@
-using CoursesService.Application.Exceptions;
+using Envelope.Common.Exceptions;
 using CoursesService.Application.Requests.CoursBlock;
 using CoursesService.Application.Requests.Course;
 using CoursesService.Application.Requests.CoursTasks;

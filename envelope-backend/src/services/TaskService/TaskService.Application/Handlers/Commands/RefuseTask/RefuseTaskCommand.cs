@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskService.Application.Common;
+using Envelope.Common.ResultPattern;
 
 namespace TaskService.Application.Handlers.Commands.RefuseTask;
 

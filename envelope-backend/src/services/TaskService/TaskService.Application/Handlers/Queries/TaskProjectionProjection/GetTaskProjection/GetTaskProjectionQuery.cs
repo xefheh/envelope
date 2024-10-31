@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskService.Application.Common;
+using Envelope.Common.ResultPattern;
 using TaskService.Application.Responses.TaskProjections.GetTaskProjection;
 
 namespace TaskService.Application.Handlers.Queries.TaskProjectionProjection.GetTaskProjection;

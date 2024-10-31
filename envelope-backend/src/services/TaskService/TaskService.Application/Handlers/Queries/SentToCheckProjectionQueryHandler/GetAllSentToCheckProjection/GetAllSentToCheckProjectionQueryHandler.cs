@@ -1,8 +1,7 @@
 ﻿using MediatR;
-using TaskService.Application.Common;
+using Envelope.Common.ResultPattern;
 using TaskService.Application.Mapping.Responses;
 using TaskService.Application.Repositories.ReadOnlyRepositories;
-using TaskService.Application.Responses.GlobalTaskProjections.GetAllGlobalProjections;
 using TaskService.Application.Responses.SentToCheckProjections.GetAllSentToCheckProjections;
 
 namespace TaskService.Application.Handlers.Queries.SentToCheckProjectionQueryHandler.GetAllSentToCheckProjection;

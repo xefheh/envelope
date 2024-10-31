@@ -1,4 +1,5 @@
-﻿using TaskService.Application.Exceptions;
+﻿using Envelope.Common.Exceptions;
+using TaskService.Application.Exceptions;
 using TaskService.Application.Handlers.Commands.AddTask;
 using TaskService.Application.Handlers.Commands.RefuseTask;
 using TaskService.Application.Handlers.Commands.RemoveTask;

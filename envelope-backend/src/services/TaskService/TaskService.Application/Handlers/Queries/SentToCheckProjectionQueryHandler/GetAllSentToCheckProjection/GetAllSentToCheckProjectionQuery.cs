@@ -1,6 +1,5 @@
 ﻿using MediatR;
-using TaskService.Application.Common;
-using TaskService.Application.Responses.GlobalTaskProjections.GetAllGlobalProjections;
+using Envelope.Common.ResultPattern;
 using TaskService.Application.Responses.SentToCheckProjections.GetAllSentToCheckProjections;
 
 namespace TaskService.Application.Handlers.Queries.SentToCheckProjectionQueryHandler.GetAllSentToCheckProjection;

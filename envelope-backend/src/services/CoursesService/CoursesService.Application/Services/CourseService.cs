@@ -1,5 +1,4 @@
-using CoursesService.Application.Common;
-using CoursesService.Application.Exceptions;
+using Envelope.Common.Exceptions;
 using CoursesService.Application.Mapping;
 using CoursesService.Application.Repositories;
 using CoursesService.Application.Requests.Course;
@@ -7,6 +6,7 @@ using CoursesService.Application.Responses.Courses.GetCourseResponse;
 using CoursesService.Application.Responses.Courses.GetCoursesResponse;
 using CoursesService.Application.Services.Interfaces;
 using CoursesService.Domain.Entities;
+using Envelope.Common.ResultPattern;
 
 namespace CoursesService.Application.Services;
 
@@ -33,7 +33,7 @@ public class CourseService : ICourseService
         var isDeleted = await _repository.RemoveAsync(id, cancellationToken);
 
         return !isDeleted ?
-            Result<bool>.OnError(new NotFoundException(typeof(Course), id)) :
+            Result<bool>.OnFailure(new NotFoundException(typeof(Course), id)) :
             Result<bool>.OnSuccess(true);
     }
 
@@ -43,7 +43,7 @@ public class CourseService : ICourseService
 
         if (course == default)
         {
-            return Result<CourseResponse>.OnError(new NotFoundException(typeof(Course), id));
+            return Result<CourseResponse>.OnFailure(new NotFoundException(typeof(Course), id));
         }
 
         var courseResponse = CourseRequestToModelMapping.MapToSingleResponse(course);
@@ -71,7 +71,7 @@ public class CourseService : ICourseService
         var isUpdated = await _repository.UpdateAsync(updatedCourse, cancellationToken);
 
         return !isUpdated ?
-            Result<bool>.OnError(new NotFoundException(typeof(Course), request.Id)) :
+            Result<bool>.OnFailure(new NotFoundException(typeof(Course), request.Id)) :
             Result<bool>.OnSuccess(true);
     }
 }
