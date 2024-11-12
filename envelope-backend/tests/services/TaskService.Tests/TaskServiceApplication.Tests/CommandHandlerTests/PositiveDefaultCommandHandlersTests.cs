@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Envelope.Common.Enums;
+using MediatR;
 using Envelope.Common.ResultPattern;
 using TaskService.Application.Handlers.Commands.AddTask;
 using TaskService.Application.Handlers.Commands.RefuseTask;
@@ -6,7 +7,6 @@ using TaskService.Application.Handlers.Commands.RemoveTask;
 using TaskService.Application.Handlers.Commands.SentToCheckTask;
 using TaskService.Application.Handlers.Commands.SentToGlobalTask;
 using TaskService.Application.Handlers.Commands.UpdateTask;
-using TaskService.Domain.Enums;
 using TaskService.Domain.Events;
 using TaskService.Tests.TaskServiceApplication.Tests.Infrastructure;
 

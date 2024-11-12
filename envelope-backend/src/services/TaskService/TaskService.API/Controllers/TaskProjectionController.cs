@@ -62,7 +62,7 @@ public class TaskProjectionController : ControllerBase
         [FromRoute] Guid authorId,
         CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new GetTaskProjectionQuery { TaskId = id, AuthorId = authorId}, cancellationToken);
+        var result = await _mediator.Send(new GetTaskProjectionQuery { TaskId = id }, cancellationToken);
 
         if (result.IsSuccess)
         {

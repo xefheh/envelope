@@ -1,7 +1,6 @@
-﻿using MediatR;
-using TaskService.Domain.Enums;
+﻿using Envelope.Common.Enums;
+using MediatR;
 using TaskService.Domain.Events.Base;
-using TaskService.Domain.Interfaces;
 
 namespace TaskService.Domain.Events;
 

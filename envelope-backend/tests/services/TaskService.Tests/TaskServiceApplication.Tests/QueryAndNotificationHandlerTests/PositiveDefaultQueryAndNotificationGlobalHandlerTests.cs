@@ -1,4 +1,5 @@
-﻿using TaskService.Application.Handlers.Commands.AddTask;
+﻿using Envelope.Common.Enums;
+using TaskService.Application.Handlers.Commands.AddTask;
 using TaskService.Application.Handlers.Commands.RemoveTask;
 using TaskService.Application.Handlers.Commands.SentToCheckTask;
 using TaskService.Application.Handlers.Commands.SentToGlobalTask;
@@ -8,7 +9,6 @@ using TaskService.Application.Handlers.Queries.SentToCheckProjectionQueryHandler
 using TaskService.Application.Handlers.Queries.SentToCheckProjectionQueryHandler.GetSentToCheckProjection;
 using TaskService.Application.Handlers.Queries.TaskProjectionProjection.GetAllTaskProjection;
 using TaskService.Application.Responses.GlobalTaskProjections.GetGlobalProjection;
-using TaskService.Domain.Enums;
 using TaskService.Tests.TaskServiceApplication.Tests.Infrastructure;
 
 namespace TaskService.Tests.TaskServiceApplication.Tests.QueryAndNotificationHandlerTests;

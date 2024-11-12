@@ -1,5 +1,5 @@
-﻿using MediatR;
-using TaskService.Domain.Enums;
+﻿using Envelope.Common.Enums;
+using MediatR;
 using TaskService.Domain.Events.Base;
 
 namespace TaskService.Domain.Events;
