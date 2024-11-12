@@ -1,14 +1,14 @@
 ﻿using Envelope.Common.Enums;
 
-namespace TaskService.Domain.Projections;
+namespace Envelope.Common.Messages.ResponseMessages.Tasks;
 
-public class GlobalTaskProjection
+public class TaskResponseMessage
 {
     /// <summary>
-    /// Суррогатный ключ
+    /// Id задачи
     /// </summary>
     public Guid Id { get; set; }
-
+    
     /// <summary>
     /// Название
     /// </summary>

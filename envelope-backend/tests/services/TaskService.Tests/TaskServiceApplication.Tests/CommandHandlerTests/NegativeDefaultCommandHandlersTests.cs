@@ -1,4 +1,5 @@
-﻿using Envelope.Common.Exceptions;
+﻿using Envelope.Common.Enums;
+using Envelope.Common.Exceptions;
 using TaskService.Application.Exceptions;
 using TaskService.Application.Handlers.Commands.AddTask;
 using TaskService.Application.Handlers.Commands.RefuseTask;
@@ -6,7 +7,6 @@ using TaskService.Application.Handlers.Commands.RemoveTask;
 using TaskService.Application.Handlers.Commands.SentToCheckTask;
 using TaskService.Application.Handlers.Commands.SentToGlobalTask;
 using TaskService.Application.Handlers.Commands.UpdateTask;
-using TaskService.Domain.Enums;
 using TaskService.Tests.TaskServiceApplication.Tests.Infrastructure;
 
 namespace TaskService.Tests.TaskServiceApplication.Tests.CommandHandlerTests;

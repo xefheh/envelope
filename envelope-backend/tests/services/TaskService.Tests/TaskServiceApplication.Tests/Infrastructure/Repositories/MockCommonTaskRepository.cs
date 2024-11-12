@@ -78,8 +78,8 @@ public class MockCommonTaskRepository :
         }, cancellationToken);
 
 
-    public async Task<TaskProjection?> GetProjectionAsync(Guid authorId, Guid projectionId, CancellationToken cancellationToken)  =>
-        await Task.Run(() => _commonListStorage.TaskProjections.FirstOrDefault(p => p.Id == projectionId && p.Author == authorId), cancellationToken);
+    public async Task<TaskProjection?> GetProjectionAsync(Guid projectionId, CancellationToken cancellationToken)  =>
+        await Task.Run(() => _commonListStorage.TaskProjections.FirstOrDefault(p => p.Id == projectionId), cancellationToken);
 
     public async Task<ICollection<TaskProjection>> GetProjectionsAsync(Guid authorId,
         CancellationToken cancellationToken) =>

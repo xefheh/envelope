@@ -1,4 +1,4 @@
-﻿namespace TaskService.Domain.Enums;
+﻿namespace Envelope.Common.Enums;
 
 /// <summary>
 /// Состояние задачи 
