@@ -1,6 +1,6 @@
 ## **ИТОГИ ПСЕВДОСПРИНТОВ (вместе с поставленными целями):**
 
-### 1. **[Dev sprint #2 12.10.2024](https://github.com/xefheh/envelope/pull/13)**
+### 1. **[Dev sprint #2 12.10.2024](https://github.com/xefheh/envelope/pull/6)**
 
 **Цель:** создание базы для core-сервисов в backend
 
@@ -12,7 +12,7 @@
 
 - - -
 
-### 3. **[Dev sprint #4 27.10.2024](https://github.com/xefheh/envelope/pull/13)**
+### 3. **[Dev sprint #4 27.10.2024](https://github.com/xefheh/envelope/pull/23)**
 
 **Цель:** добавление дополнительных сервисов, контейниризация docker, стартовать работу над UI
 
