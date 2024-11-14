@@ -29,4 +29,9 @@ public class MockCommonAuthRepository : IUserRepository
     {
         return await Task.Run(() => _commonStorage.Users.FirstOrDefault(user => user.Nickname == nickname));
     }
+
+    public async Task<User?> GetUserById(Guid id)
+    {
+        return await Task.Run(() => _commonStorage.Users.FirstOrDefault(user => user.Id == id));
+    }
 }

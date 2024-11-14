@@ -1,6 +1,6 @@
-﻿using MediatR;
-using TaskService.Application.Common;
-using TaskService.Application.Exceptions;
+﻿using Envelope.Common.Exceptions;
+using MediatR;
+using Envelope.Common.ResultPattern;
 using TaskService.Application.Mapping.Responses;
 using TaskService.Application.Repositories.ReadOnlyRepositories;
 using TaskService.Application.Responses.TaskProjections.GetTaskProjection;
@@ -16,7 +16,7 @@ public class GetTaskProjectionQueryHandler : IRequestHandler<GetTaskProjectionQu
     
     public async Task<Result<GetTaskProjectionResponse>> Handle(GetTaskProjectionQuery request, CancellationToken cancellationToken)
     {
-        var projection = await _repository.GetProjectionAsync(request.AuthorId, request.TaskId, cancellationToken);
+        var projection = await _repository.GetProjectionAsync(request.TaskId, cancellationToken);
 
         if (projection is null)
         {

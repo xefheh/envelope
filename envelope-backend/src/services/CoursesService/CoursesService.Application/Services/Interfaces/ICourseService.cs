@@ -1,7 +1,7 @@
-using CoursesService.Application.Common;
 using CoursesService.Application.Requests.Course;
 using CoursesService.Application.Responses.Courses.GetCourseResponse;
 using CoursesService.Application.Responses.Courses.GetCoursesResponse;
+using Envelope.Common.ResultPattern;
 
 namespace CoursesService.Application.Services.Interfaces;
 

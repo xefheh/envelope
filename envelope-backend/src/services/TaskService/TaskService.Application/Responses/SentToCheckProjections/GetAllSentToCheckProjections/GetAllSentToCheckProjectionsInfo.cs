@@ -1,4 +1,4 @@
-﻿using TaskService.Domain.Enums;
+﻿using Envelope.Common.Enums;
 
 namespace TaskService.Application.Responses.SentToCheckProjections.GetAllSentToCheckProjections;
 

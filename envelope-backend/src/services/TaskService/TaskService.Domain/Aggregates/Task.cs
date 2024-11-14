@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using TaskService.Domain.Enums;
+using Envelope.Common.Enums;
 using TaskService.Domain.Events;
 using TaskService.Domain.Events.Base;
 using TaskService.Domain.Interfaces;

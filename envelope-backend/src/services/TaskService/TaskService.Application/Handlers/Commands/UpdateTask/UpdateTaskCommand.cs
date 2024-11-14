@@ -1,6 +1,6 @@
-﻿using MediatR;
-using TaskService.Application.Common;
-using TaskService.Domain.Enums;
+﻿using Envelope.Common.Enums;
+using MediatR;
+using Envelope.Common.ResultPattern;
 
 namespace TaskService.Application.Handlers.Commands.UpdateTask;
 

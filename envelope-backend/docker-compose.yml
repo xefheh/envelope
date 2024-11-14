@@ -22,8 +22,8 @@ services:
     hostname: auth_service
     
     build: 
-      context: src/services/AuthService
-      dockerfile: Dockerfile
+      context: src/
+      dockerfile: services/AuthService/Dockerfile
     
     ports: 
       - '8080:8080'
@@ -37,6 +37,7 @@ services:
     
     depends_on:
       - auth_service_db
+      - rabbit_mq
   
   task_service_db:
     container_name: task_service_db
@@ -59,8 +60,8 @@ services:
     hostname: task_service
 
     build:
-      context: src/services/TaskService
-      dockerfile: Dockerfile
+      context: src/
+      dockerfile: services/TaskService/Dockerfile
     
     environment:
       - ConnectionStrings__TaskEventStore=Host=task_service_db;Port=5432;Database=taskEventStore;Username=postgres;Password=postgres;
@@ -75,7 +76,8 @@ services:
 
     depends_on:
       - task_service_db
-    
+      - rabbit_mq
+
   courses_service_db:
     container_name: courses_service_db
     hostname: courses_service_db
@@ -97,8 +99,8 @@ services:
     hostname: courses_service
 
     build:
-      context: src/services/CoursesService
-      dockerfile: Dockerfile
+      context: src/
+      dockerfile: services/CoursesService/Dockerfile
 
     ports:
       - '8082:8082'
@@ -121,8 +123,14 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+      - services_network
     ports:
       - "15672:15672"
+      - "5672:5672"
+    expose:
+     - 15672
+     - 5672
     
 
 networks:

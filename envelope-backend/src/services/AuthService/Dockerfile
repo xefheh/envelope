@@ -7,18 +7,24 @@ ENV ASPNETCORE_URLS="http://+:8080"
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["/AuthService.API/AuthService.API.csproj", "AuthService.API/"]
-COPY ["/AuthService.Persistence/AuthService.Persistence.csproj", "AuthService.Persistence/"]
-COPY ["/AuthService.Domain/AuthService.Domain.csproj", "AuthService.Domain/"]
-COPY ["/AuthService.Application/AuthService.Application.csproj", "AuthService.Application/"]
-RUN dotnet restore "AuthService.API/AuthService.API.csproj"
 
-COPY /AuthService.API/. AuthService.API/
-COPY /AuthService.Application/. AuthService.Application/
-COPY /AuthService.Domain/. AuthService.Domain/
-COPY /AuthService.Persistence/. AuthService.Persistence/
+COPY ["services/AuthService/AuthService.API/AuthService.API.csproj", "service/src/AuthService.API/"]
+COPY ["services/AuthService/AuthService.Persistence/AuthService.Persistence.csproj", "service/srcAuthService.Persistence/"]
+COPY ["services/AuthService/AuthService.Domain/AuthService.Domain.csproj", "service/src/AuthService.Domain/"]
+COPY ["services/AuthService/AuthService.Application/AuthService.Application.csproj", "service/src/AuthService.Application/"]
+COPY ["infrastructure/Envelope.Common/Envelope.Common.csproj", "infrastructure/Envelope.Common/"]
+COPY ["infrastructure/Envelope.Integration/Envelope.Integration.csproj", "infrastructure/Envelope.Integration/"]
 
-WORKDIR "/src/AuthService.API"
+RUN dotnet restore "service/src/AuthService.API/AuthService.API.csproj"
+
+COPY services/AuthService/AuthService.API/. service/src/AuthService.API/
+COPY services/AuthService/AuthService.Application/. service/src/AuthService.Application/
+COPY services/AuthService/AuthService.Domain/. service/src/AuthService.Domain/
+COPY services/AuthService/AuthService.Persistence/. service/src/AuthService.Persistence/
+COPY infrastructure/Envelope.Common/. infrastructure/Envelope.Common/
+COPY infrastructure/Envelope.Integration/. infrastructure/Envelope.Integration/
+
+WORKDIR "/src/service/src/AuthService.API"
 RUN dotnet build "AuthService.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

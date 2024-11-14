@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Envelope.Integration.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaskService.Application.BackgroundServices;
 using TaskService.Application.EventBus.Interfaces;
 using TaskService.Application.Handlers.Commands.AddTask;
 
@@ -11,6 +13,8 @@ public static class DependencyInjection
     {
         AddMediator(services);
         AddEventBus(services);
+        AddMessageBus(services, configuration);
+        AddBackgroundServices(services);
         return services;
     }
 
@@ -25,4 +29,13 @@ public static class DependencyInjection
         services.AddScoped<IEventBus, EventBus.EventBus>();
     }
 
+    private static void AddMessageBus(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddIntegrationMessageBus(configuration);
+    }
+
+    private static void AddBackgroundServices(IServiceCollection services)
+    {
+        services.AddHostedService<TaskBackgroundService>();
+    }
 }

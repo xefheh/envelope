@@ -12,8 +12,8 @@ public class EfTaskProjectionReadOnlyRepository : ITaskProjectionReadOnlyReposit
     public EfTaskProjectionReadOnlyRepository(TaskReadOnlyContext context) =>
         _context = context;
     
-    public async Task<TaskProjection?> GetProjectionAsync(Guid authorId, Guid projectionId, CancellationToken cancellationToken)  =>
-        await _context.TaskProjections.FirstOrDefaultAsync(p => p.Id == projectionId && p.Author == authorId, cancellationToken);
+    public async Task<TaskProjection?> GetProjectionAsync(Guid projectionId, CancellationToken cancellationToken)  =>
+        await _context.TaskProjections.FirstOrDefaultAsync(p => p.Id == projectionId, cancellationToken);
 
     public async Task<ICollection<TaskProjection>> GetProjectionsAsync(Guid authorId, CancellationToken cancellationToken) =>
         await _context.TaskProjections.ToListAsync(cancellationToken);

@@ -68,11 +68,12 @@ public static class DependencyInjection
         
         services.AddDbContext<TaskReadOnlyContext>(builder => builder
             .UseNpgsql(taskProjectionDatabaseConnectionString)
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking),
+            ServiceLifetime.Singleton);
         
-        services.AddScoped<IGlobalProjectionReadOnlyRepository, EfGlobalProjectionReadOnlyRepository>();
-        services.AddScoped<ITaskProjectionReadOnlyRepository, EfTaskProjectionReadOnlyRepository>();
-        services.AddScoped<ISentToCheckProjectionReadOnlyRepository, EfSentToCheckProjectionReadOnlyRepository>();
+        services.AddSingleton<IGlobalProjectionReadOnlyRepository, EfGlobalProjectionReadOnlyRepository>();
+        services.AddSingleton<ITaskProjectionReadOnlyRepository, EfTaskProjectionReadOnlyRepository>();
+        services.AddSingleton<ISentToCheckProjectionReadOnlyRepository, EfSentToCheckProjectionReadOnlyRepository>();
     }
     
     /// <summary>
