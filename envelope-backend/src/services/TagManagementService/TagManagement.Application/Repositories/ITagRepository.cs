@@ -4,9 +4,9 @@ namespace TagManagement.Application.Repositories
 {
     public interface ITagRepository
     {
-        Task AddTag(Tag tag);
-        Task<IEnumerable<Tag?>> GetTagsForEntity(Guid entityId);
+        Task AddTagAsync(Tag tag);
+        Task<IEnumerable<Tag?>> GetTagsForEntityAsync(Guid entityId);
         //Task<ICollection<Tag?>> PredictTag(Guid entityId);
-        Task RemoveTag(Guid id);
+        Task<bool> RemoveTagAsync(Guid id);
     }
 }

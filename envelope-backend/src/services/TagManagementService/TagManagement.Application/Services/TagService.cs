@@ -4,6 +4,7 @@ using TagManagement.Application.Request;
 using TagManagement.Application.Response;
 using TagManagement.Domain.Entities;
 using TagManagement.Application.Repositories;
+using Envelope.Common.Exceptions;
 
 namespace TagManagement.Application.Services
 {
@@ -16,24 +17,22 @@ namespace TagManagement.Application.Services
             _tagRepository = tagRepository;
         }
 
-        public async Task<Result<TagDTO>> AddTag(TagRequest request)
+        public async Task<Result<Guid>> AddTagAsync(TagRequest request)
         {
-            var exception= await CheckTagData(request);
+            var exception = CheckTagData(request);
 
             if (exception is not null)
             {
-                return Result<TagDTO>.OnFailure(exception);
+                return Result<Guid>.OnFailure(exception);
             }
-
+          
             var tag = new Tag()
             {
-                Id = request.TagId,
-                Name = request.TagName,
-                Type = request.TagType,
-                EntityId = request.EntityId,
+                Id=request.TagId,
+                Name=request.TagName,
+                Type=request.TagType,
+                EntityId=request.EntityId,
             };
-
-            await _tagRepository.AddTag(tag);
 
             var result = new TagDTO()
             {
@@ -42,10 +41,12 @@ namespace TagManagement.Application.Services
                 TagType = tag.Type,
                 EntityId = tag.EntityId,
             };
-            return Result<TagDTO>.OnSuccess(result);
+
+            await _tagRepository.AddTagAsync(tag);
+            return Result<Guid>.OnSuccess(result.TagId);
         }
 
-        public async Task<Result<TagDTO>> RemoveTag(TagRequest request)
+        public async Task<Result<bool>> RemoveTagAsync(TagRequest request)
         {
             var tag = new Tag()
             {
@@ -56,14 +57,18 @@ namespace TagManagement.Application.Services
             {
                 TagId = tag.Id,
             };
-            await _tagRepository.RemoveTag(result.TagId);
-            return Result<TagDTO>.OnSuccess(result);
+
+            var isDeleted=await _tagRepository.RemoveTagAsync(result.TagId);
+
+            return isDeleted ?
+                Result<bool>.OnFailure(new NotFoundException(typeof(Tag), result.TagId)) :
+                Result<bool>.OnSuccess(true);
         }
 
 
-        public async Task<Result<IEnumerable<TagDTO>>> GetTagsForEntity(TagRequest request)
+        public async Task<Result<IEnumerable<TagDTO>>> GetTagsForEntityAsync(TagRequest request)
         {
-            var exception = await CheckTagData(request);
+            var exception = CheckTagData(request);
 
             if (exception is not null)
             {
@@ -78,7 +83,7 @@ namespace TagManagement.Application.Services
                 EntityId = request.EntityId,
             };
 
-            var tags = await _tagRepository.GetTagsForEntity(tag.EntityId);
+            var tags = await _tagRepository.GetTagsForEntityAsync(tag.EntityId);
 
             var result = tags.Select(tag => new TagDTO()
             {
@@ -90,14 +95,12 @@ namespace TagManagement.Application.Services
 
             return Result<IEnumerable<TagDTO>>.OnSuccess(result);
         }
-        private async Task<Exception?> CheckTagData(TagRequest request)
+        private Exception? CheckTagData(TagRequest request)
         {
-            if (request.TagName is null or "")
+            if (String.IsNullOrEmpty(request.TagName))
             {
                 return new InvalidNameException($"Invalid tag name: {request.TagName}");
             }
-            //возможно нужно добавить еще проверок,но вроде все
-
             return null;
         }
     }

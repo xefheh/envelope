@@ -14,19 +14,25 @@ namespace TagManagement.Persistence.Repositories
             _context = context;
         }
 
-        public async Task AddTag(Tag tag)
+        public async Task AddTagAsync(Tag tag)
         {
             _context.Add(tag);
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveTag(Guid id)
+        public async Task<bool> RemoveTagAsync(Guid id)
         {
-            _context.Remove(id);
-            await _context.SaveChangesAsync();
+            var tag = _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
+            if (tag != null)
+            {
+                _context.Remove(tag);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
-        public async Task<IEnumerable<Tag?>> GetTagsForEntity(Guid entityId)
+        public async Task<IEnumerable<Tag?>> GetTagsForEntityAsync(Guid entityId)
         {
             return await _context.Tags
                 .Where(t => t.EntityId == entityId)

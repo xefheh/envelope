@@ -25,9 +25,6 @@ namespace TagManagementService.Tests.TagManagementServiceTests
         public async Task InvalidTagName_Add_ThrowInvalidTagNameException()
         {
             var (tagService, commonStorage) = DependencyInjection.CreateTagServiceAndRepository();
-
-            //придумать негативные тесты и exception, добавить их в service
-
             CreateDefaultTypeAndTag(commonStorage);
 
             var request = new TagRequest()
@@ -38,7 +35,7 @@ namespace TagManagementService.Tests.TagManagementServiceTests
                 EntityId = Guid.NewGuid(),
             };
              
-            var result=await tagService.AddTag(request);
+            var result=await tagService.AddTagAsync(request);
 
             Assert.False(result.IsSuccess);
             Assert.IsType<InvalidNameException>(result.Exception);
