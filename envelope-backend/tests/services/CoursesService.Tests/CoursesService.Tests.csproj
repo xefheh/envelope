@@ -24,8 +24,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Application\CoursesService.Application.csproj" />
       <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Domain\CoursesService.Domain.csproj" />
-      <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Application\CoursesService.Application.csproj" />
-      <ProjectReference Include="..\..\..\src\services\CoursesService\CoursesService.Domain\CoursesService.Domain.csproj" />
     </ItemGroup>
 
 </Project>

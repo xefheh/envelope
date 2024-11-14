@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TagManagement.Application\TagManagement.Application.csproj" />
-    <ProjectReference Include="..\TagManagement.Domain\TagManagement.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\services\TagManagementService\TagManagement.Application\TagManagement.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\services\TagManagementService\TagManagement.Domain\TagManagement.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

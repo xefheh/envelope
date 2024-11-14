@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\infrastructure\Envelope.Common\Envelope.Common.csproj" />
+    <ProjectReference Include="..\..\..\infrastructure\Envelope.Common\Envelope.Common.csproj" />
     <ProjectReference Include="..\TagManagement.Domain\TagManagement.Domain.csproj" />
   </ItemGroup>
 
