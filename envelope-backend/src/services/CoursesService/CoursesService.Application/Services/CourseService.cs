@@ -6,16 +6,21 @@ using CoursesService.Application.Responses.Courses.GetCourseResponse;
 using CoursesService.Application.Responses.Courses.GetCoursesResponse;
 using CoursesService.Application.Services.Interfaces;
 using CoursesService.Domain.Entities;
+using Envelope.Common.Messages.RequestMessages.Tasks;
+using Envelope.Common.Messages.ResponseMessages.Tasks;
+using Envelope.Common.Queries;
 using Envelope.Common.ResultPattern;
+using Envelope.Integration.Interfaces;
 
 namespace CoursesService.Application.Services;
 
 public class CourseService : ICourseService
 {
     private readonly ICourseRepository _repository;
+    private readonly IMessageBus _messageBus;
 
-    public CourseService(ICourseRepository repository) =>
-        _repository = repository;
+    public CourseService(ICourseRepository repository, IMessageBus messageBus) =>
+        (_repository, _messageBus) = (repository, messageBus);
     
     public async Task<Result<Guid>> AddAsync(AddCourseRequest request, CancellationToken cancellationToken)
     {
@@ -45,8 +50,23 @@ public class CourseService : ICourseService
         {
             return Result<CourseResponse>.OnFailure(new NotFoundException(typeof(Course), id));
         }
-
+        
         var courseResponse = CourseRequestToModelMapping.MapToSingleResponse(course);
+
+        foreach (var courseBlock in course.Blocks)
+        {
+            var blockInfo = CourseRequestToModelMapping.MapToBlockInfo(courseBlock);
+            foreach (var courseTask in courseBlock.Tasks)
+            {
+                var taskResponseMessage = await _messageBus
+                    .SendWithRequestAsync<GetTaskByIdRequestMessage, TaskResponseMessage>(
+                    QueueNames.GetTaskQueue, new GetTaskByIdRequestMessage { Id = courseTask.Task }, 5000);
+
+                var taskInformation = CourseRequestToModelMapping.MapMessageToTaskInfo(taskResponseMessage);
+                blockInfo.Tasks.Add(taskInformation);
+            }
+            courseResponse.Blocks.Add(blockInfo);
+        }
 
         return Result<CourseResponse>.OnSuccess(courseResponse);
     }
