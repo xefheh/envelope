@@ -37,6 +37,7 @@ services:
     
     depends_on:
       - auth_service_db
+      - rabbit_mq
   
   task_service_db:
     container_name: task_service_db
@@ -75,7 +76,8 @@ services:
 
     depends_on:
       - task_service_db
-    
+      - rabbit_mq
+
   courses_service_db:
     container_name: courses_service_db
     hostname: courses_service_db
