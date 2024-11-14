@@ -8,5 +8,7 @@ public interface IUserRepository
 
     Task<User?> GetUserByNickname(string email);
 
+    Task<User?> GetUserById(Guid id);
+
     Task Create(User user);
 }

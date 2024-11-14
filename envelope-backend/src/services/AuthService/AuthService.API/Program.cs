@@ -10,7 +10,7 @@ var configuration = builder.Configuration;
 services.AddControllers();
 services.AddSwaggerGen();
 
-services.AddApplication();
+services.AddApplication(configuration);
 services.AddPersistence(configuration);
 
 var app = builder.Build();

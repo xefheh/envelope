@@ -30,6 +30,6 @@ public static class DependencyInjection
 
         services.AddDbContext<UserContext>(builder => builder.UseNpgsql(userDataBaseConnectionString));
 
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddSingleton<IUserRepository, UserRepository>();
     }
 }
