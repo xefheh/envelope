@@ -22,7 +22,6 @@
 
 **Цель:** поднять API Gateway, сделать колосальную работу со стороны UI/UX
 
-
 ## 1. Backend:
 
 [1. Инфраструктурные библиотеки (кликабельно)](./envelope-backend/src/infrastructure)
