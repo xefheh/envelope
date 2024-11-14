@@ -8,6 +8,8 @@ namespace CoursesService.Tests;
 
 public class PositiveCourseServiceTests
 {
+    private readonly MockMessageBus _mockMessageBus = new MockMessageBus();
+    
     [Fact]
     public async Task Valid_CourseService_AddCourse()
     {
@@ -20,7 +22,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var id = await courseService.AddAsync(request, CancellationToken.None);
         Assert.True(id.IsSuccess);
     }
@@ -37,7 +39,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var id = await courseService.AddAsync(request, CancellationToken.None);
         var isDeleted = await courseService.RemoveAsync(id.Value, CancellationToken.None);
         Assert.True(isDeleted.Value);
@@ -55,7 +57,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var id = await courseService.AddAsync(request, CancellationToken.None);
         var course = await courseService.GetAsync(id.Value, CancellationToken.None);
         Assert.True(course.IsSuccess);
@@ -82,7 +84,7 @@ public class PositiveCourseServiceTests
         };
         
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         await courseService.AddAsync(requestPartOne, CancellationToken.None);
         await courseService.AddAsync(requestPartTwo, CancellationToken.None);
         var courses = await courseService.GetCoursesAsync(CancellationToken.None);
@@ -102,7 +104,7 @@ public class PositiveCourseServiceTests
         };
         
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var id = await courseService.AddAsync(requestPartOne, CancellationToken.None);
         
         var requestPartTwo = new UpdateCourseRequest()
@@ -131,7 +133,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var idCourse = await courseService.AddAsync(requestCourse, CancellationToken.None);
         var request = new AddCourseBlockRequest()
         {
@@ -158,7 +160,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var idCourse = await courseService.AddAsync(requestCourse, CancellationToken.None);
         var request = new AddCourseBlockRequest()
         {
@@ -186,7 +188,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var idCourse = await courseService.AddAsync(requestCourse, CancellationToken.None);
         
         var request = new AddCourseBlockRequest()
@@ -224,7 +226,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var idCourse = await courseService.AddAsync(requestCourse, CancellationToken.None);
         
         var requestBlock = new AddCourseBlockRequest()
@@ -262,7 +264,7 @@ public class PositiveCourseServiceTests
         };
 
         var courseMockRepository = new CourseMockRepository();
-        var courseService = new CourseService(courseMockRepository);
+        var courseService = new CourseService(courseMockRepository, _mockMessageBus);
         var idCourse = await courseService.AddAsync(requestCourse, CancellationToken.None);
         
         var requestBlock = new AddCourseBlockRequest()

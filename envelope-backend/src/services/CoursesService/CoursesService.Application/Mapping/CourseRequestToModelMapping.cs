@@ -2,6 +2,7 @@ using CoursesService.Application.Requests.Course;
 using CoursesService.Application.Responses.Courses.GetCourseResponse;
 using CoursesService.Application.Responses.Courses.GetCoursesResponse;
 using CoursesService.Domain.Entities;
+using Envelope.Common.Messages.ResponseMessages.Tasks;
 
 namespace CoursesService.Application.Mapping;
 
@@ -34,23 +35,24 @@ public static class CourseRequestToModelMapping
         Description = course.Description,
         IsOutOfDate = course.IsOutOfDate,
         UpdateDate = course.UpdateDate,
-        StartDate = course.StartDate,
-        Blocks = course.Blocks
-            .Select(b =>
-            new CourseBlockInfo
-            {
-                Id = b.Id,
-                Description = b.Description,
-                NameOfBlock = b.NameOfBlock,
-                Tasks = b.Tasks
-                    .Select(t =>
-                    new CourseTaskInfo
-                    {
-                        Id = t.Id,
-                        Task = t.Task
-                    })
-                    .ToList()
-            })
-            .ToList()
+        StartDate = course.StartDate
+    };
+
+    public static CourseBlockInfo MapToBlockInfo(CourseBlock courseBlock) => new()
+    {
+        Id = courseBlock.Id,
+        Description = courseBlock.Description,
+        NameOfBlock = courseBlock.NameOfBlock
+    };
+
+    public static CourseTaskInfo MapMessageToTaskInfo(TaskResponseMessage message) => new()
+    {
+        Id = message.Id,
+        CreationDate = message.CreationDate,
+        Description = message.Description,
+        Difficult = message.Difficult,
+        ExecutionTime = message.ExecutionTime,
+        Name = message.Name,
+        UpdateDate = message.UpdateDate
     };
 }

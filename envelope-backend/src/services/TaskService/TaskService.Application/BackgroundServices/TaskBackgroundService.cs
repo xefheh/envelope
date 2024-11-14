@@ -31,8 +31,6 @@ public class TaskBackgroundService : BackgroundService, ITaskBackgroundService
         var response = new TaskResponseMessage
         {
             Id = task.Id,
-            Answer = task.Answer,
-            Author = task.Author,
             CreationDate = task.CreationDate,
             Description = task.Description,
             Difficult = task.Difficult,

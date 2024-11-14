@@ -18,11 +18,6 @@ public class TaskResponseMessage
     /// Описание (содержание)
     /// </summary>
     public string Description { get; set; } = null!;
-
-    /// <summary>
-    /// Ответ
-    /// </summary>
-    public string Answer { get; set; } = null!;
     
     /// <summary>
     /// Сложность
@@ -33,11 +28,6 @@ public class TaskResponseMessage
     /// Время выполнения (в секундах)
     /// </summary>
     public int? ExecutionTime { get; set; }
-    
-    /// <summary>
-    /// Id автора задачи
-    /// </summary>
-    public Guid Author { get; set; }
     
     /// <summary>
     /// Дата создания задачи
