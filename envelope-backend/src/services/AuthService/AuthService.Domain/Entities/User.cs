@@ -1,4 +1,4 @@
-﻿using AuthService.Domain.Enums;
+﻿using Envelope.Common.Enums;
 
 namespace AuthService.Domain.Entities;
 

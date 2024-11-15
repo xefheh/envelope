@@ -1,9 +1,7 @@
 ﻿using AuthService.Application.Config;
-using AuthService.Domain.Enums;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace AuthService.Application.Utilities;
 

@@ -1,4 +1,6 @@
-﻿namespace Envelope.Common.Messages.ResponseMessages.Users;
+﻿using Envelope.Common.Enums;
+
+namespace Envelope.Common.Messages.ResponseMessages.Users;
 
 /// <summary>
 /// Ответ на сообщение-запрос получения пользователя
@@ -18,7 +20,7 @@ public class UserInfoResponseMessage
     /// <summary>
     /// Роль
     /// </summary>
-    public required string Role { get; set; }
+    public Role Role { get; set; }
 
     /// <summary>
     /// Электронная почта

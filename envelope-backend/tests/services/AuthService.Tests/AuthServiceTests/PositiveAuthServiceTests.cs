@@ -2,7 +2,7 @@
 using AuthService.Application.Utilities;
 using AuthService.Domain.Entities;
 using AuthService.Application.Requests;
-using AuthService.Domain.Enums;
+using Envelope.Common.Enums;
 
 namespace AuthService.Tests.AuthServiceTests;
 
