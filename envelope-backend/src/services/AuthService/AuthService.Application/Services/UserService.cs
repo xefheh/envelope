@@ -4,7 +4,7 @@ using AuthService.Application.Requests;
 using AuthService.Application.Responses;
 using AuthService.Application.Utilities;
 using AuthService.Domain.Entities;
-using AuthService.Domain.Enums;
+using Envelope.Common.Enums;
 using System.Text.RegularExpressions;
 using Envelope.Common.ResultPattern;
 

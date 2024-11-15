@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\infrastructure\Envelope.Common\Envelope.Common.csproj" />
+    </ItemGroup>
+
 </Project>

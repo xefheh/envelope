@@ -32,7 +32,7 @@ public class AuthBackgroundService : BackgroundService, IAuthBackgroundService
         {
             Id = user.Id,
             Nickname = user.Nickname,
-            Role = user.Role.ToString(),
+            Role = user.Role,
             Email = user.Email
         };
 
