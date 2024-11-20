@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskService.Application.Handlers.Queries.GlobalProjectionQueriesHandler.GetAllGlobalProjection;
 using TaskService.Application.Handlers.Queries.GlobalProjectionQueriesHandler.GetGlobalProjection;
@@ -73,6 +74,7 @@ public class TaskProjectionController : ControllerBase
     }
     
     [HttpGet("checked/getAll")]
+    [Authorize]
     public async Task<ActionResult<GetAllSentToCheckProjectionsResponse>> GetAllSentToCheckProjections(
         [FromQuery] GetAllSentToCheckProjectionQuery query,
         CancellationToken cancellationToken)
@@ -82,6 +84,7 @@ public class TaskProjectionController : ControllerBase
     }
     
     [HttpGet("checked/get/{id:guid}")]
+    [Authorize]
     public async Task<ActionResult<GetSentToCheckProjectionResponse>> GetSentToCheckProjection(
         [FromRoute] Guid id,
         CancellationToken cancellationToken)

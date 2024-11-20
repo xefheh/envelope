@@ -1,5 +1,6 @@
 using CoursesService.Application.Requests.CoursBlock;
 using CoursesService.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoursesService.API.Controllers;
@@ -16,6 +17,7 @@ public class CourseBlockController: ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Guid>> AddCourseAsync(AddCourseBlockRequest request, CancellationToken cancellationToken)
     {
         var id = await _courseBlockService.AddAsync(request, cancellationToken);
@@ -24,6 +26,7 @@ public class CourseBlockController: ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
+    [Authorize]
     public async Task<ActionResult<bool>> RemoveCourseAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _courseBlockService.RemoveAsync(id, cancellationToken);
@@ -33,6 +36,7 @@ public class CourseBlockController: ControllerBase
     }
 
     [HttpPut]
+    [Authorize]
     public async Task<ActionResult<bool>> UpdateCourseAsync(UpdateCourseBlockRequest request, CancellationToken cancellationToken)
     {
         var isUpdated = await _courseBlockService.UpdateAsync(request, cancellationToken);
