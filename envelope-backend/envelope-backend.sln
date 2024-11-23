@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{869569E4-DF69-4ED3-B312-D67FF2BF458B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskService", "TaskService", "{610BCBD5-A228-4A63-95C0-F1F31B94B6A2}"
+	ProjectSection(SolutionItems) = preProject
+		src\services\TaskService\Dockerfile = src\services\TaskService\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskService.Domain", "src\services\TaskService\TaskService.Domain\TaskService.Domain.csproj", "{3DE6F7D0-8580-409C-B88E-400A484114DA}"
 EndProject
@@ -22,8 +25,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskService.Tests", "tests\services\TaskService.Tests\TaskService.Tests.csproj", "{0AC53A73-AE1E-4347-A038-A7F34874E8C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoursesService", "CoursesService", "{19BB6100-CADA-43FF-83D8-24D33E52EE3B}"
+	ProjectSection(SolutionItems) = preProject
+		src\services\CoursesService\Dockerfile = src\services\CoursesService\Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService", "{09618C5C-C6FF-466B-9B3C-F64C4E61ADCA}"
+	ProjectSection(SolutionItems) = preProject
+		src\services\AuthService\Dockerfile = src\services\AuthService\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursesService.Application", "src\services\CoursesService\CoursesService.Application\CoursesService.Application.csproj", "{DEDCAFCD-B042-4A61-B02A-279E7E538C79}"
 EndProject
@@ -57,7 +66,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Envelope.Integration.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Envelope.Common", "src\infrastructure\Envelope.Common\Envelope.Common.csproj", "{14A8E3FB-FFCC-47D8-B147-4D9113DF081E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TagManagementService", "src\services\TagManagementService", "{28870215-3F8E-4DBB-B021-E712695ABC9A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TagManagementService", "TagManagementService", "{28870215-3F8E-4DBB-B021-E712695ABC9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagManagement.Domain", "src\services\TagManagementService\TagManagement.Domain\TagManagement.Domain.csproj", "{60265DFD-1E2D-47CE-9F61-46703B8F97B4}"
 EndProject
@@ -66,6 +75,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagManagement.Persistence", "src\services\TagManagementService\TagManagement.Persistence\TagManagement.Persistence.csproj", "{BB4BCD41-B1CC-47F5-AB80-57A0859D6374}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagManagementService.Tests", "tests\services\TagManagementService.Tests\TagManagementService.Tests.csproj", "{F1198D3F-4403-4212-9B93-CD901411B0CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{2E1DD7CF-7CB0-458D-B4B7-0202EF478C26}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Envelope.ApiGateway", "src\infrastructure\Envelope.ApiGateway\Envelope.ApiGateway.csproj", "{FA26A140-436F-4A8F-9BC0-D2FAA9DF8082}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +180,10 @@ Global
 		{F1198D3F-4403-4212-9B93-CD901411B0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1198D3F-4403-4212-9B93-CD901411B0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1198D3F-4403-4212-9B93-CD901411B0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA26A140-436F-4A8F-9BC0-D2FAA9DF8082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA26A140-436F-4A8F-9BC0-D2FAA9DF8082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA26A140-436F-4A8F-9BC0-D2FAA9DF8082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA26A140-436F-4A8F-9BC0-D2FAA9DF8082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +219,7 @@ Global
 		{5C496EF6-DD9E-481F-8432-04C49A17EA72} = {28870215-3F8E-4DBB-B021-E712695ABC9A}
 		{BB4BCD41-B1CC-47F5-AB80-57A0859D6374} = {28870215-3F8E-4DBB-B021-E712695ABC9A}
 		{F1198D3F-4403-4212-9B93-CD901411B0CD} = {29066DA3-DFB7-4F26-AFC1-A99934C1D0EB}
+		{FA26A140-436F-4A8F-9BC0-D2FAA9DF8082} = {88A686D7-334B-4BBE-89F7-D5013150A892}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DF78641-8E68-4B66-AD8A-26DD6D99A988}

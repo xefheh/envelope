@@ -1,5 +1,6 @@
 using CoursesService.Application.Requests.CoursTasks;
 using CoursesService.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoursesService.API.Controllers;
@@ -16,6 +17,7 @@ public class CourseTaskController: ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Guid>> AddCourseAsync(AddCourseTaskRequest request, CancellationToken cancellationToken)
     {
         var id = await _courseTaskService.AddAsync(request, cancellationToken);
@@ -24,6 +26,7 @@ public class CourseTaskController: ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
+    [Authorize]
     public async Task<ActionResult<bool>> RemoveCourseAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _courseTaskService.RemoveAsync(id, cancellationToken);
