@@ -30,14 +30,24 @@ services:
     
     environment:
       - ConnectionStrings__UsersDataBase=Host=auth_service_db;Port=5432;Database=usersDataBase;Username=postgres;Password=postgres;
+      - RabbitMqOptions__Hostname=rabbit_mq
+      - RabbitMqOptions__Port=5672
+      - RabbitMqOptions__Login=admin
+      - RabbitMqOptions__Password=admin
     
     networks:
       - services_network
       - auth_service_network
     
-    depends_on:
-      - auth_service_db
+    links:
       - rabbit_mq
+      - auth_service_db 
+
+    depends_on:
+      rabbit_mq:
+        condition: service_healthy
+      auth_service_db:
+        condition: service_started
   
   task_service_db:
     container_name: task_service_db
@@ -66,6 +76,10 @@ services:
     environment:
       - ConnectionStrings__TaskEventStore=Host=task_service_db;Port=5432;Database=taskEventStore;Username=postgres;Password=postgres;
       - ConnectionStrings__TaskProjectionDatabase=Host=task_service_db;Port=5432;Database=taskProjectionDb;Username=postgres;Password=postgres;
+      - RabbitMqOptions__Hostname=rabbit_mq
+      - RabbitMqOptions__Port=5672
+      - RabbitMqOptions__Login=admin
+      - RabbitMqOptions__Password=admin
 
     ports:
       - "8081:8081"
@@ -74,9 +88,15 @@ services:
       - task_service_network
       - services_network
 
-    depends_on:
-      - task_service_db
+    links:
       - rabbit_mq
+      - task_service_db 
+
+    depends_on:
+      rabbit_mq:
+        condition: service_healthy
+      task_service_db:
+        condition: service_started
 
   courses_service_db:
     container_name: courses_service_db
@@ -94,7 +114,7 @@ services:
     networks:
       - courses_service_network
 
-  course_service:
+  courses_service:
     container_name: courses_service
     hostname: courses_service
 
@@ -107,13 +127,24 @@ services:
     
     environment:
       - ConnectionStrings__CourseDataBase=Host=courses_service_db;Port=5432;Database=courseDataBase;Username=postgres;Password=postgres;
+      - RabbitMqOptions__Hostname=rabbit_mq
+      - RabbitMqOptions__Port=5672
+      - RabbitMqOptions__Login=admin
+      - RabbitMqOptions__Password=admin
 
     networks:
       - courses_service_network
       - services_network
+      
+    links:
+      - rabbit_mq
+      - courses_service_db 
 
     depends_on:
-      - courses_service_db
+      rabbit_mq:
+        condition: service_healthy
+      courses_service_db:
+        condition: service_started
   
   rabbit_mq:
     image: rabbitmq:3.10.7-management
@@ -131,6 +162,30 @@ services:
     expose:
      - 15672
      - 5672
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  api_gateway:
+    container_name: api_gateway
+    hostname: api_gateway
+
+    depends_on:
+      - auth_service
+      - task_service
+      - courses_service
+
+    build: 
+      context: src/infrastructure/Envelope.ApiGateway
+      dockerfile: Dockerfile
+
+    ports:
+      - '8084:8084'
+    networks:
+      - services_network
+
     
 
 networks:

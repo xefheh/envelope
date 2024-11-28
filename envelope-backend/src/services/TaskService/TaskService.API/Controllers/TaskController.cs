@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskService.Application.Handlers.Commands.AddTask;
 using TaskService.Application.Handlers.Commands.RefuseTask;
@@ -25,6 +26,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPut("update")]
+    [Authorize]
     public async Task<ActionResult> UpdateTaskAsync(UpdateTaskCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -38,6 +40,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpDelete("delete")]
+    [Authorize]
     public async Task<ActionResult> RemoveTaskAsync(RemoveTaskCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -51,6 +54,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPost("postToCheck")]
+    [Authorize]
     public async Task<ActionResult> SentToCheckTaskAsync(SentToCheckTaskCommand command,
         CancellationToken cancellationToken)
     {
@@ -65,6 +69,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPost("postToGlobal")]
+    [Authorize]
     public async Task<ActionResult> SentToGlobalTaskAsync(SentToGlobalTaskCommand command,
         CancellationToken cancellationToken)
     {
@@ -79,6 +84,7 @@ public class TaskController : ControllerBase
     }
     
     [HttpPost("refuse")]
+    [Authorize]
     public async Task<ActionResult> RefuseTaskAsync(RefuseTaskCommand command,
         CancellationToken cancellationToken)
     {

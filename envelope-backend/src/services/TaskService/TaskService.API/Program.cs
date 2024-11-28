@@ -1,3 +1,4 @@
+using Envelope.Common.Auth;
 using Microsoft.EntityFrameworkCore;
 using TaskService.Application;
 using TaskService.Persistence;
@@ -17,9 +18,13 @@ services.AddRouting(options => options.LowercaseUrls = true);
 
 services
     .AddApplication(configuration)
-    .AddPersistence(configuration);
+    .AddPersistence(configuration)
+    .AddEnvelopeAuth(configuration);
+
 
 var app = builder.Build();
+
+app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 using (var scope = app.Services.CreateScope())
 {
@@ -28,6 +33,9 @@ using (var scope = app.Services.CreateScope())
     var projectionContext = scope.ServiceProvider.GetRequiredService<TaskWriteOnlyContext>();
     projectionContext.Database.Migrate(); 
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseSwagger();
 app.UseSwaggerUI();

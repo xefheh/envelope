@@ -1,0 +1,73 @@
+.inputField {
+	border: 1px gray solid;
+	border-radius: 4px;
+	padding: 10px 15px;
+	transition: linear 0.25s;
+	font-size: 1rem;
+	font-weight: 400;
+	height: 50px;
+	transition: linear 0.5s;
+}
+
+.inputField:focus {
+	border: 2px black solid;
+}
+
+.createForm {
+	display: flex;
+	margin: 50px auto;
+	gap: 40px;
+	width: 70vw;
+	background-color: white;
+}
+
+.leftColumn {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	max-width: 500px;
+	width: 500px;
+	flex: 1;
+}
+
+.rightColumn {
+	margin-left: calc(500px + 100px);
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 40px;
+}
+
+.labelRightColumn {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.createFormLabel {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-size: 1.1rem;
+	font-weight: 500;
+
+}
+
+.formLegend {
+	font-size: 2rem;
+	font-weight: bolder;
+}
+
+.labelRequired::after {
+	content: '*';
+	color: red;
+	margin-left: 5px;
+}
+
+.submitBtn {
+	height: 50px;
+	background-color: lightgreen;
+	border-radius: 5px;
+	font-size: 1.25rem;
+	font-weight: 600;
+}

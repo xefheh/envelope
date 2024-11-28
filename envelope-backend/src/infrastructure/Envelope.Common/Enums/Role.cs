@@ -1,4 +1,4 @@
-﻿namespace AuthService.Domain.Enums;
+﻿namespace Envelope.Common.Enums;
 
 /// <summary>
 /// Ролы пользователей
@@ -14,7 +14,7 @@ public enum Role
     /// Преподаватель
     /// </summary>
     Teacher,
-    
+
     /// <summary>
     /// Модератор
     /// </summary>
