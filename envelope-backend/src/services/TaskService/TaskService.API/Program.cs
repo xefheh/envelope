@@ -24,6 +24,8 @@ services
 
 var app = builder.Build();
 
+app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
 using (var scope = app.Services.CreateScope())
 {
     var eventStoreContext = scope.ServiceProvider.GetRequiredService<TaskEventStoreContext>();

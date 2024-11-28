@@ -7,6 +7,7 @@ services.AddReverseProxy()
     .LoadFromConfig(configuration.GetSection("ReverseProxy"));
 
 var app = builder.Build();
+app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.MapReverseProxy();
 
