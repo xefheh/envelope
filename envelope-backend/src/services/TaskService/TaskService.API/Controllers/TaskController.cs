@@ -19,7 +19,6 @@ public class TaskController : ControllerBase
     public TaskController(IMediator mediator) => _mediator = mediator;
 
     [HttpPost("post")]
-    [Authorize]
     public async Task<ActionResult<Guid>> AddTaskAsync(AddTaskCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
