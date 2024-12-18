@@ -33,11 +33,16 @@ public class GetTaskProjectionResponse
     /// Время выполнения (в секундах)
     /// </summary>
     public int? ExecutionTime { get; set; }
-    
+
     /// <summary>
     /// Id автора задачи
     /// </summary>
-    public Guid Author { get; set; }
+    public Guid AuthorId { get; set; }
+
+    /// <summary>
+    /// Имя автора задачи
+    /// </summary>
+    public string AuthorName { get; set; } = null!;
     
     /// <summary>
     /// Дата создания задачи
@@ -50,4 +55,6 @@ public class GetTaskProjectionResponse
     public DateTime UpdateDate { get; set; }
     
     public TaskGlobalState State { get; set; }
+
+    public string[] Tags { get; set; } = [];
 }

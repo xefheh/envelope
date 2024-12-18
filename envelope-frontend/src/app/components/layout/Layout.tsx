@@ -1,3 +1,4 @@
+"use client";
 import { LayoutProps } from "./Layout.props";
 import styles from "./Layout.module.css";
 import { Header } from "./header/Header";
@@ -10,6 +11,7 @@ export const Layout: React.FC<LayoutProps> = ({
     <div className={styles.mainContainer}>
       <Header />
       <main className={styles.mainContent}>{children}</main>
+      <Footer />
     </div>
   );
 };

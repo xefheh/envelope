@@ -15,6 +15,14 @@ services
     .AddPersistence(configuration)
     .AddEnvelopeAuth(configuration);
 
+services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -22,6 +30,8 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<CourseContext>();
     dbContext.Database.Migrate();
 }
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -7,4 +7,5 @@ namespace TaskService.Application.Handlers.Queries.TaskProjectionProjection.GetT
 public class GetTaskProjectionQuery : IRequest<Result<GetTaskProjectionResponse>>
 {
     public Guid TaskId { get; set; }
+    public Guid? AuthorId { get; set; }
 }

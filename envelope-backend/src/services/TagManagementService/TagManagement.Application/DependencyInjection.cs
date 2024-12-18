@@ -13,7 +13,7 @@ namespace TagManagement.Application
 
         private static void AddService(IServiceCollection services)
         {
-            services.AddScoped<TagService>();
+            services.AddSingleton<TagService>();
         }
     }
 }

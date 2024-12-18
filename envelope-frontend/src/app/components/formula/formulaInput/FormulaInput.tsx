@@ -1,9 +1,9 @@
 import { Editor } from "@tinymce/tinymce-react/lib/cjs/main/ts/components/Editor";
 import React from "react";
 import { FormulaInputProps } from "./FormulaInput.props";
-import { v4 as uuidv4 } from "uuid";
 
 export const FormulaInput = ({
+  id,
   reference,
   height,
   placeholder,
@@ -11,14 +11,15 @@ export const FormulaInput = ({
 }: FormulaInputProps) => {
   return (
     <Editor
-      id={"input_id_" + uuidv4()}
+      id={id}
       apiKey={process.env.NEXT_PUBLIC_RICH_EDITOR_KEY}
-      onInit={(_, editor) => {
+      onInit={(a, editor) => {
         reference.current = editor;
         if (value) {
           editor.setContent(value);
         }
       }}
+      initialValue={value}
       disabled={false}
       init={{
         language: "ru",

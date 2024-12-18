@@ -5,11 +5,6 @@ namespace TagManagement.Application.Request
     public class TagRequest
     {
         /// <summary>
-        /// Суррогатный ключ
-        /// </summary>
-        public Guid TagId { get; set; }
-
-        /// <summary>
         /// Название тэга
         /// </summary>
         public required string TagName { get; set; }

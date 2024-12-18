@@ -21,7 +21,7 @@ public class TaskBackgroundService : BackgroundService, ITaskBackgroundService
 
     public async Task<TaskResponseMessage> ResponseAsync(GetTaskByIdRequestMessage message)
     {
-        var task = await _repository.GetProjectionAsync(message.Id, CancellationToken.None);
+        var task = await _repository.GetProjectionAsync(message.Id, null, CancellationToken.None);
 
         if (task == default)
         {

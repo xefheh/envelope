@@ -11,4 +11,6 @@ public class GetAllTaskProjectionsInfo
     public DateTime UpdateDate { get; set; }
     
     public TaskGlobalState State { get; set; }
+
+    public string[] Tags { get; set; } = [];
 }

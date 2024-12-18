@@ -1,9 +1,55 @@
 :root {
-    --primaryColor: #81C8C2;
-    --secondaryColor: #4B3F72;
-    --lightGrayFillColor: #D9D9D9;
-    --grayFillColor: #808080;
-    --darkerGrayFillColor: #625B70;
-    
-    --mainFontfamilty: 'Montserrat', sans-serif;
+  --primaryColor: #81c8c2;
+  --secondaryColor: #4b3f72;
+  --lightGrayFillColor: #d9d9d9;
+  --grayFillColor: #808080;
+  --darkerGrayFillColor: #353535;
+  --whiteColor: white;
+
+  --mainFontfamilty: "Montserrat", sans-serif;
+
+  --xxl-fontsize: 2rem;
+  --xl-fontsize: 1.5rem;
+  --l-fontsize: 1.25rem;
+  --m-fontsize: 1rem;
+  --s-fontsize: 0.85rem;
+  --xs-fontsize: 0.7rem;
+  --xxs-fontsize: 0.65rem;
+
+  --m-inner-padding: 5px 15px;
+  --l-inner-padding: 10px 30px;
+  --xl-inner-padding: 20px 60px;
+
+  --l-outer-top-padding: 100px;
+  --m-outer-top-padding: 50px;
+  --s-outer-top-padding: 25px;
+
+  --l-fontweight: 600;
+  --m-fontweight: 500;
+  --s-fontweight: 400;
+
+  --m-border-radius: 10px;
+  --l-border-radius: 15px;
+  --s-border-radius: 7px;
+
+  --xxl-gap: 50px;
+  --xl-gap: 30px;
+  --l-gap: 20px;
+  --m-gap: 15px;
+  --s-gap: 10px;
+  --xs-gap: 7px;
+
+  --xxl-width: calc(var(--m-width) * 2);
+  --xl-width: calc(var(--m-width) * 1.6);
+  --l-width: calc(var(--m-width) * 1.2);
+  --m-width: 700px;
+  --s-width: calc(var(--m-width) * 0.8);
+  --xs-width: calc(var(--m-width) * 0.5);
+  --xxs-width: calc(var(--m-width) * 0.25);
+
+  --transition-time: 0.2s;
+
+  --hardDifficult: rgb(203, 27, 27);
+  --normalDifficult: rgb(230, 156, 18);
+  --easyDifficult: rgb(100, 197, 100);
 }

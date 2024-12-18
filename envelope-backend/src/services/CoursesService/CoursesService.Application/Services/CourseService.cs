@@ -11,6 +11,8 @@ using Envelope.Common.Messages.ResponseMessages.Tasks;
 using Envelope.Common.Queries;
 using Envelope.Common.ResultPattern;
 using Envelope.Integration.Interfaces;
+using Envelope.Common.Messages.RequestMessages.Users;
+using Envelope.Common.Messages.ResponseMessages.Users;
 
 namespace CoursesService.Application.Services;
 
@@ -52,6 +54,14 @@ public class CourseService : ICourseService
         }
         
         var courseResponse = CourseRequestToModelMapping.MapToSingleResponse(course);
+
+        var authorNameResponse = await _messageBus
+            .SendWithRequestAsync<
+                GetUserByIdRequestMessage,
+                UserInfoResponseMessage>(QueueNames.GetUserQueue,
+                    new GetUserByIdRequestMessage() { Id = course.AuthorId }, 10000);
+
+        courseResponse.AuthorName = authorNameResponse.Nickname;
 
         foreach (var courseBlock in course.Blocks)
         {

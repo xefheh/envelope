@@ -8,5 +8,6 @@ public class Course
     public DateTime StartDate { get; set; }
     public DateTime UpdateDate { get; set; }
     public bool IsOutOfDate { get; set; }
+    public Guid AuthorId { get; set; }
     public ICollection<CourseBlock> Blocks { get; set; } = new List<CourseBlock>();
 }

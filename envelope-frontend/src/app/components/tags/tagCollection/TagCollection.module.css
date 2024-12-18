@@ -1,0 +1,23 @@
+.tagsContainer {
+  display: flex;
+  column-gap: var(--m-gap);
+  row-gap: var(--xs-gap);
+  font-size: var(--l-fontsize);
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: flex;
+  background-color: var(--lightGrayFillColor);
+  padding: var(--m-inner-padding);
+  border-radius: var(--m-border-radius);
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-time) linear;
+}
+
+.tag:hover {
+  font-weight: 600;
+}

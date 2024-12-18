@@ -186,6 +186,54 @@ services:
     networks:
       - services_network
 
+  tag_management_service_db:
+    container_name: tag_management_service_db
+    hostname: tag_management_service_db
+    image: postgres:latest
+    
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+      
+    volumes:
+      - tag_management_service_volume:/var/lib/postgresql/data/pgdata
+    
+    networks:
+      - tag_management_service_network
+  
+  tag_management_service:
+    container_name: tag_management_service
+    hostname: tag_management_service
+    
+    build: 
+      context: src/
+      dockerfile: services/TagManagementService/Dockerfile
+    
+    ports: 
+      - '8086:8086'
+    
+    environment:
+      - ConnectionStrings__TagsDataBase=Host=tag_management_service_db;Port=5432;Database=tagsDataBase;Username=postgres;Password=postgres;
+      - RabbitMqOptions__Hostname=rabbit_mq
+      - RabbitMqOptions__Port=5672
+      - RabbitMqOptions__Login=admin
+      - RabbitMqOptions__Password=admin
+    
+    networks:
+      - services_network
+      - tag_management_service_network
+    
+    links:
+      - rabbit_mq
+      - tag_management_service_db 
+
+    depends_on:
+      rabbit_mq:
+        condition: service_healthy
+      tag_management_service_db:
+        condition: service_started
+
     
 
 networks:
@@ -193,8 +241,10 @@ networks:
   auth_service_network:
   courses_service_network:
   task_service_network:
+  tag_management_service_network:
 
 volumes:
   auth_service_volume:
   courses_service_volume:
   task_service_volume:
+  tag_management_service_volume:  

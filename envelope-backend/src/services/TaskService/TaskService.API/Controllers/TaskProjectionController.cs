@@ -57,13 +57,14 @@ public class TaskProjectionController : ControllerBase
         return result.Value!;
     }
     
-    [HttpGet("get/{id:guid}/{authorId:guid}")]
+    [HttpGet("get/{id:guid}/{authorId:guid?}")]
     public async Task<ActionResult<GetTaskProjectionResponse>> GetProjection(
         [FromRoute] Guid id,
-        [FromRoute] Guid authorId,
+        [FromRoute] Guid? authorId,
+
         CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new GetTaskProjectionQuery { TaskId = id }, cancellationToken);
+        var result = await _mediator.Send(new GetTaskProjectionQuery { TaskId = id, AuthorId = authorId }, cancellationToken);
 
         if (result.IsSuccess)
         {

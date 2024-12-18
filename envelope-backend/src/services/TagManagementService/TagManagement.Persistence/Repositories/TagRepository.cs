@@ -32,7 +32,7 @@ namespace TagManagement.Persistence.Repositories
             return false;
         }
 
-        public async Task<IEnumerable<Tag?>> GetTagsForEntityAsync(Guid entityId)
+        public async Task<IEnumerable<Tag>> GetTagsForEntityAsync(Guid entityId)
         {
             return await _context.Tags
                 .Where(t => t.EntityId == entityId)
