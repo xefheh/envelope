@@ -25,6 +25,7 @@ public static class CourseRequestToModelMapping
     {
         Id = course.Id,
         Name = course.Name,
+        Description = course.Description,
         UpdateDate = course.UpdateDate
     };
 
@@ -35,7 +36,8 @@ public static class CourseRequestToModelMapping
         Description = course.Description,
         IsOutOfDate = course.IsOutOfDate,
         UpdateDate = course.UpdateDate,
-        StartDate = course.StartDate
+        StartDate = course.StartDate,
+        AuthorId = course.AuthorId
     };
 
     public static CourseBlockInfo MapToBlockInfo(CourseBlock courseBlock) => new()

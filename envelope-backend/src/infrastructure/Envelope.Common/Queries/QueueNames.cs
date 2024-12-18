@@ -14,4 +14,8 @@ public class QueueNames
     /// Очередь на получение информации о пользователях
     /// </summary>
     public const string GetUserQueue = "GET_USER_QUERY";
+
+    public const string AddTagQueue = "ADD_TAG_QUEUE";
+
+    public const string GetTagQueue = "GET_TAG_QUEUE";
 }

@@ -1,0 +1,57 @@
+.difficultHard {
+  background-color: var(--hardDifficult);
+}
+
+.difficultNormal {
+  background-color: var(--normalDifficult);
+}
+
+.difficultEasy {
+  background-color: var(--easyDifficult);
+}
+
+.wrapper {
+  width: var(--xl-width);
+  max-width: var(--xl-width);
+  margin-bottom: 125px;
+}
+
+.taskItem {
+  font-weight: bold;
+  font-size: var(--xxl-fontsize);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--l-gap);
+}
+
+.difficult {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--l-fontsize);
+  color: white;
+  padding: var(--m-inner-padding);
+  border-radius: var(--m-border-radius);
+}
+
+.nameWithDifficult {
+  display: flex;
+  gap: var(--m-gap);
+  border-bottom: 2px solid var(--lightGrayFillColor);
+  padding-bottom: 15px;
+}
+
+.time {
+  font-size: var(--l-fontsize);
+  font-weight: var(--m-fontweight);
+  border-bottom: 2px solid var(--lightGrayFillColor);
+  padding-bottom: 15px;
+}
+
+.bold {
+  font-weight: bold;
+}

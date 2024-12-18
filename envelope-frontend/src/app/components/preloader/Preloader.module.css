@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.preloader {
+  width: 75px;
+  height: 75px;
+  border: 10px solid var(--secondaryColor);
+  border-radius: 100%;
+  border-top-color: var(--primaryColor);
+  animation: preloaderAnimation 2s infinite;
+}
+
+@keyframes preloaderAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}

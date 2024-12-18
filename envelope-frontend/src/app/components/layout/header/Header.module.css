@@ -1,71 +1,80 @@
 .header {
-    position: fixed;
-    width: 100%;
-    height: 100px;
-	z-index: 10;
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  z-index: 10;
 }
 
 .headerContent {
-    height: 100px;
-    background-color: var(--primaryColor);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  height: 75px;
+  background-color: var(--primaryColor);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .projectName {
-    color: var(--secondaryColor);
-    font-weight: bold;
-    font-size: 2.5rem;
+  color: var(--secondaryColor);
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.loginedButtons {
+  display: flex;
+  gap: 5px;
 }
 
 .navigation {
-    display: flex;
-    gap: 52px;
+  display: flex;
+  gap: 52px;
 }
 
 .navigationLink {
-    color: black;
-    font-size: 1.25rem;
-    transition: linear 0.15s;
-    position: relative;
+  color: black;
+  font-size: var(--l-fontsize);
+  transition: linear var(--transition-time);
+  position: relative;
+  font-weight: var(--m-fontweight);
 }
 
 .navigationLink::after {
-    content: '';
-    position: absolute;
-    height: 3px;
-    background-color: var(--secondaryColor);
-    transition: ease-in-out 0.15s;
-    width: 0%;
-    bottom: -3px;
-    left: 0;
+  content: "";
+  position: absolute;
+  height: 3px;
+  background-color: var(--secondaryColor);
+  transition: ease-in-out var(--transition-time);
+  width: 0%;
+  bottom: -3px;
+  left: 0;
 }
 
 .navigationLink:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 .navigationLink:hover {
-    color: var(--secondaryColor);
+  color: var(--secondaryColor);
 }
 
 .enterBtn {
-    color: black;
-    font-weight: bold;
-    font-size: 1.25rem; 
-    width: 200px;
-    height: 40px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  color: black;
+  font-weight: bold;
+  font-size: 1.25rem;
+  width: 200px;
+  height: 40px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  transition: var(--transition-time) linear;
 }
 
 .enterBtn:hover {
-    background-color: var(--lightGrayFillColor);
+  background-color: var(--secondaryColor);
+  color: white;
 }

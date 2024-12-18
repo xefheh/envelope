@@ -1,0 +1,98 @@
+.courseCard {
+  display: flex;
+  gap: var(--xxl-gap);
+  padding: var(--xl-inner-padding);
+  border: 2px solid var(--lightGrayFillColor);
+  border-radius: var(--l-border-radius);
+  width: var(--xl-width);
+  transition: linear var(--transition-time);
+  flex: 1;
+  align-items: center;
+}
+
+.nonOurChoose {
+  padding-right: 30px;
+}
+
+.isOurChoose:hover::after {
+}
+
+.isOurChoose::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: "НАШ ВЫБОР";
+  margin: -22px -62px -22px 0;
+  width: 40px;
+  max-width: 40px;
+  border-top: 2px solid var(--secondaryColor);
+  border-bottom: 2px solid var(--secondaryColor);
+  border-right: 2px solid var(--secondaryColor);
+
+  border-top-right-radius: var(--l-border-radius);
+  border-bottom-right-radius: var(--l-border-radius);
+
+  background-color: var(--secondaryColor);
+
+  writing-mode: vertical-lr;
+  color: white;
+  font-weight: var(--m-fontweight);
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+
+  transition: var(--transition-time) linear;
+}
+
+.courseCard:hover {
+  border-color: var(--secondaryColor);
+  cursor: pointer;
+}
+
+.stars {
+  display: flex;
+  gap: var(--xs-gap);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-gap);
+  justify-content: center;
+  align-items: center;
+  justify-self: flex-end;
+  min-width: var(--xxs-width);
+}
+
+.starsHeader {
+  font-size: var(--m-fontsize);
+  font-weight: bold;
+}
+
+.courseTitle {
+  font-size: var(--xxl-fontsize);
+  font-weight: bold;
+}
+
+.courseInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--xs-gap);
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--m-gap);
+  flex: 1;
+  max-width: var(--xl-width);
+}
+
+.courseDescription {
+  font-size: var(--l-fontsize);
+}
+
+.markCount {
+  font-size: var(--s-fontsize);
+  font-weight: var(--m-fontweight);
+}

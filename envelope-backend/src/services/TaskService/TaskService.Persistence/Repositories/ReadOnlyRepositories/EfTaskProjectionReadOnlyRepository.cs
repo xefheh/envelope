@@ -11,10 +11,20 @@ public class EfTaskProjectionReadOnlyRepository : ITaskProjectionReadOnlyReposit
 
     public EfTaskProjectionReadOnlyRepository(TaskReadOnlyContext context) =>
         _context = context;
-    
-    public async Task<TaskProjection?> GetProjectionAsync(Guid projectionId, CancellationToken cancellationToken)  =>
-        await _context.TaskProjections.FirstOrDefaultAsync(p => p.Id == projectionId, cancellationToken);
 
-    public async Task<ICollection<TaskProjection>> GetProjectionsAsync(Guid authorId, CancellationToken cancellationToken) =>
-        await _context.TaskProjections.ToListAsync(cancellationToken);
+    public async Task<TaskProjection?> GetProjectionAsync(Guid projectionId, Guid? authorId, CancellationToken cancellationToken)
+    {
+        return await _context.TaskProjections.FirstOrDefaultAsync(p => p.Id == projectionId && (authorId == null || p.Author == authorId), cancellationToken);
+    }
+
+    public async Task<ICollection<TaskProjection>> GetProjectionsAsync(Guid? authorId, CancellationToken cancellationToken)
+    {
+        IQueryable<TaskProjection> filtredProjections = _context.TaskProjections;
+
+        if(authorId == null)
+        {
+            filtredProjections = filtredProjections.Where(p => p.Author == authorId);
+        }
+        return await filtredProjections.ToListAsync(cancellationToken);
+    }
 }

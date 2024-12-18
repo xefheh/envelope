@@ -35,4 +35,6 @@ public class AddTaskCommand : IRequest<Result<Guid>>
     /// Id автора задачи
     /// </summary>
     public Guid Author { get; set; }
+
+    public string[] Tags { get; set; } = [];
 }

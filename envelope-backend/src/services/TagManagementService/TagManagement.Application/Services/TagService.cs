@@ -5,6 +5,7 @@ using TagManagement.Application.Response;
 using TagManagement.Domain.Entities;
 using TagManagement.Application.Repositories;
 using Envelope.Common.Exceptions;
+using TagManagement.Domain.Enums;
 
 namespace TagManagement.Application.Services
 {
@@ -21,6 +22,8 @@ namespace TagManagement.Application.Services
         {
             var exception = CheckTagData(request);
 
+            var tagId =Guid.NewGuid();
+
             if (exception is not null)
             {
                 return Result<Guid>.OnFailure(exception);
@@ -28,7 +31,7 @@ namespace TagManagement.Application.Services
           
             var tag = new Tag()
             {
-                Id=request.TagId,
+                Id= tagId,
                 Name=request.TagName,
                 Type=request.TagType,
                 EntityId=request.EntityId,
@@ -46,19 +49,14 @@ namespace TagManagement.Application.Services
             return Result<Guid>.OnSuccess(result.TagId);
         }
 
-        public async Task<Result<bool>> RemoveTagAsync(TagRequest request)
+        public async Task<Result<bool>> RemoveTagAsync(Guid tagId)
         {
-            var tag = new Tag()
-            {
-                Id = request.TagId
-            };          
-
             var result = new TagDTO()
             {
-                TagId = tag.Id,
+                TagId = tagId,
             };
 
-            var isDeleted=await _tagRepository.RemoveTagAsync(result.TagId);
+            var isDeleted=await _tagRepository.RemoveTagAsync(tagId);
 
             return isDeleted ?
                 Result<bool>.OnFailure(new NotFoundException(typeof(Tag), result.TagId)) :
@@ -66,24 +64,9 @@ namespace TagManagement.Application.Services
         }
 
 
-        public async Task<Result<IEnumerable<TagDTO>>> GetTagsForEntityAsync(TagRequest request)
+        public async Task<Result<IEnumerable<TagDTO>>> GetTagsForEntityAsync(TagType tagType, Guid entityId)
         {
-            var exception = CheckTagData(request);
-
-            if (exception is not null)
-            {
-                return Result<IEnumerable<TagDTO>>.OnFailure(exception);
-            }
-
-            var tag = new Tag()
-            {
-                Id = request.TagId,
-                Name = request.TagName,
-                Type = request.TagType,
-                EntityId = request.EntityId,
-            };
-
-            var tags = await _tagRepository.GetTagsForEntityAsync(tag.EntityId);
+            var tags = await _tagRepository.GetTagsForEntityAsync(entityId);
 
             var result = tags.Select(tag => new TagDTO()
             {

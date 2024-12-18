@@ -5,5 +5,7 @@ export interface Task {
 	description: string,
 	difficult: Difficult,
 	executionTime: number,
-	answer: string;
+	answer: string,
+	tags: string[],
+	authorName: string;
 }

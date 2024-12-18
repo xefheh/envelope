@@ -20,13 +20,13 @@ public class TaskResponseMapping
     {        
         Id = projection.Id,
         Answer = projection.Answer,
-        Author = projection.Author,
         CreationDate = projection.CreationDate,
         Description = projection.Description,
         Difficult = projection.Difficult,
         ExecutionTime = projection.ExecutionTime,
         Name = projection.Name,
         UpdateDate = projection.UpdateDate,
-        State = projection.State
+        State = projection.State,
+        AuthorId =projection.Author
     };
 }

@@ -1,12 +1,12 @@
 .footer {
-    height: 110px;
-    background-color: var(--darkerGrayFillColor);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 75px;
+  background-color: var(--darkerGrayFillColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .copyright {
-    font-size: 0.875rem;
-    color: white;
+  font-size: 0.875rem;
+  color: white;
 }

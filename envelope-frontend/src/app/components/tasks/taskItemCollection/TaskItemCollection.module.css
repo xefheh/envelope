@@ -1,0 +1,9 @@
+.courseContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--m-gap);
+  padding-top: var(--s-outer-top-padding);
+  padding-bottom: var(--s-outer-top-padding);
+  align-items: center;
+  flex: 1;
+}

@@ -20,7 +20,8 @@ namespace CoursesService.Persistence.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsOutOfDate = table.Column<bool>(type: "boolean", nullable: false)
+                    IsOutOfDate = table.Column<bool>(type: "boolean", nullable: false),
+                    AuthorId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {

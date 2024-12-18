@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./Header.module.css";
+import { checkLoggedState, logout } from "@/app/services/authService";
+import { useRouter } from "next/navigation";
 
 export const Header = (): JSX.Element => {
+  const router = useRouter();
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -22,9 +27,28 @@ export const Header = (): JSX.Element => {
             Преподавание
           </Link>
         </nav>
-        <button className={styles.enterBtn}>
-          ВХОД <span className="material-symbols-outlined">login</span>
-        </button>
+        {!checkLoggedState() ? (
+          <Link href="/auth">
+            <button className={styles.enterBtn}>
+              ВХОД <span className="material-symbols-outlined">login</span>
+            </button>
+          </Link>
+        ) : (
+          <>
+            <div className={styles.loginedButtons}>
+              <button className={styles.enterBtn}>Профиль</button>
+              <button
+                className={styles.enterBtn}
+                onClick={() => {
+                  logout();
+                  router.refresh();
+                }}
+              >
+                Выход
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </header>
   );
